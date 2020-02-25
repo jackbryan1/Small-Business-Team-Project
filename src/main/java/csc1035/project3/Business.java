@@ -9,4 +9,19 @@ public interface Business {
      * @param : Item the item to check stock.
      * @return : Returns the stock available.
      */
+
+    String printReceipt(Item item);
+    /**
+     * Prints a receipt depending on the items bought.
+     *
+     * @param : Item is the items that have been bought.
+     * @return : Returns the receipt that has been created.
+     */
+
+    void updateStock(Item item);
+    /**
+     * Updates the amount of stock for an item depending on purchases.
+     *
+     * @param : Item is the item that needs its stock updating.
+     */
 }
