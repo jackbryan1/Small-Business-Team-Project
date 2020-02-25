@@ -52,4 +52,5 @@ public class Item {
     public void setSellPrice(float sellPrice) {
         this.sellPrice = sellPrice;
     }
+
 }
