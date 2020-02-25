@@ -9,6 +9,4 @@ public interface Business {
      * @param : Item the item to check stock.
      * @return : Returns the stock available.
      */
-
-    
 }
