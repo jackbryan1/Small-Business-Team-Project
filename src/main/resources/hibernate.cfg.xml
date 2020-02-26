@@ -16,6 +16,7 @@
 
         <mapping class="csc1035.project3.Item" /> <!--- Add a new mapping class for a new table in the database -->
         <mapping class="csc1035.project3.Customer" />
+        <mapping class="csc1035.project3.Transaction" />
 
     </session-factory>
 </hibernate-configuration>
