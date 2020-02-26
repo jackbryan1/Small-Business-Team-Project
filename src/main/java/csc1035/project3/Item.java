@@ -13,7 +13,7 @@ public class Item {
     private String name;
     @Column(name = "isPerishable")
     private boolean isPerishable;
-    @Column(name = "makeCoat")
+    @Column(name = "makeCost")
     private float makeCost;
     @Column(name = "stock")
     private int stock;
