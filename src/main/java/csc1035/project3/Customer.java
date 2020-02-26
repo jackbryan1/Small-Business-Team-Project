@@ -1,9 +1,19 @@
 package csc1035.project3;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "CUSTOMER")
 public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cid", updatable = false, nullable = false)
     private int cid;
+    @Column(name = "surname")
     private String surname;
+    @Column(name = "email")
     private String email;
+    @Column(name = "phone_extension")
     private String phoneExt;
 
     public Customer(int cid, String surname, String email, String phoneExt) {
