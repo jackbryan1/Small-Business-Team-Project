@@ -3,7 +3,7 @@ package csc1035.project3;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CUSTOMER")
+@Table(name = "Customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +13,7 @@ public class Customer {
     private String surname;
     @Column(name = "email")
     private String email;
-    @Column(name = "phone_extension")
+    @Column(name = "phoneExt")
     private String phoneExt;
 
     public Customer(int cid, String surname, String email, String phoneExt) {
