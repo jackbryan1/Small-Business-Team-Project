@@ -35,13 +35,14 @@ public class main {
                     s = scanner.nextLine();
                     if (s.matches("(.*),(.*),(.*),(.*),(.*)")) {
                         String[] fields = s.split(",");
+
                         String name = fields[0];
                         boolean isPerishable = Boolean.parseBoolean(fields[1]);
                         float makeCost = Float.parseFloat(fields[2]);
                         int stock =  Integer.parseInt(fields[3]);
                         float sellPrice = Float.parseFloat(fields[4]);
 
-                        Item item = new Item(name, isPerishable, makeCost, stock, sellPrice);
+                        Items item = new Items(name, isPerishable, makeCost, stock, sellPrice);
 
                         System.out.println("Item added");
                     } else {
