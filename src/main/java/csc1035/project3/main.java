@@ -31,7 +31,18 @@ public class main {
                     System.out.println("Prints receipt");
                     break;
                 case ("2"):
-                    System.out.println("Add new item");
+                    System.out.println("Item to add:(name,isPerishable,makeCost,stock,sellPrice)");
+                    s = scanner.nextLine();
+                    if (s.matches("(.*),(.*),(.*),(.*),(.*)")) {
+                        String[] fields = s.split(",");
+                        //Create new item here
+                        for (int i = 0; i < 5; i++) {
+                            System.out.println(fields[i]);
+                        }
+                        System.out.println("Item added");
+                    } else {
+                        System.out.println("Wrong format.");
+                    }
                     break;
                 case ("3"):
                     System.out.println("Check stock");
