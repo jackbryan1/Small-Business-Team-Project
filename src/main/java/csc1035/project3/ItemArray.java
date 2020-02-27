@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ItemArray{
 
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Items> items = new ArrayList<>();
 
     public static void main(String args[]){
         ItemArray array1 = new ItemArray();
@@ -21,7 +21,7 @@ public class ItemArray{
             while(s.hasNext()){
                 String[] temp = new String[6];
                 temp = s.nextLine().split(",");
-                items.add(new Item(Integer.parseInt(temp[0]), temp[1], Boolean.parseBoolean(temp[2]), Float.parseFloat(temp[3]), Integer.parseInt(temp[4]), Float.parseFloat(temp[5])));
+                items.add(new Items(temp[0], temp[1], Boolean.parseBoolean(temp[2]), Double.parseDouble(temp[3]), Integer.parseInt(temp[4]), Double.parseDouble(temp[5])));
             }
             s.close();
 

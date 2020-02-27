@@ -2,7 +2,7 @@ package csc1035.project3;
 
 public interface Business {
 
-    int availableStock(Item item);
+    int availableStock(Items item);
     /**
      * Check the available stock of an item.
      *
@@ -10,7 +10,7 @@ public interface Business {
      * @return : Returns the stock available.
      */
 
-    String printReceipt(Item item, Customer customer, Transaction transaction);
+    String printReceipt(Items item, Customer customer, Transaction transaction);
     /**
      * Prints a receipt depending on the items bought.
      *
@@ -18,7 +18,7 @@ public interface Business {
      * @return : Returns the receipt that has been created.
      */
 
-    void updateStock(Item item);
+    void updateStock(Items item);
     /**
      * Updates the amount of stock for an item depending on purchases.
      *

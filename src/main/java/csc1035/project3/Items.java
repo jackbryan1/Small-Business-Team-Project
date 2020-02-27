@@ -11,6 +11,8 @@ public class Items {
     private int id;
     @Column(name = "name")
     private String name;
+    @Column(name = "category")
+    private String category;
     @Column(name = "isPerishable")
     private boolean isPerishable;
     @Column(name = "makeCost")
@@ -20,8 +22,9 @@ public class Items {
     @Column(name = "sellPrice")
     private double sellPrice;
 
-    public Items(String name, boolean isPerishable, double makeCost, int stock, double sellPrice) {
+    public Items(String name, String category, boolean isPerishable, double makeCost, int stock, double sellPrice) {
         this.name = name;
+        this.category = category;
         this.isPerishable = isPerishable;
         this.makeCost = makeCost;
         this.stock = stock;
@@ -36,6 +39,14 @@ public class Items {
         return name;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public boolean isPerishable() {
         return isPerishable;
     }
@@ -44,7 +55,7 @@ public class Items {
         return makeCost;
     }
 
-    public void setMakeCost(float makeCost) {
+    public void setMakeCost(double makeCost) {
         this.makeCost = makeCost;
     }
 
@@ -60,7 +71,7 @@ public class Items {
         return sellPrice;
     }
 
-    public void setSellPrice(float sellPrice) {
+    public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
     }
 
