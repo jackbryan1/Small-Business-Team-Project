@@ -31,18 +31,19 @@ public class main {
                     System.out.println("Prints receipt");
                     break;
                 case ("2"):
-                    System.out.println("Item to add:(name,isPerishable,makeCost,stock,sellPrice)");
+                    System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
                     s = scanner.nextLine();
-                    if (s.matches("(.*),(.*),(.*),(.*),(.*)")) {
+                    if (s.matches("(.*),(.*),(.*),(.*),(.*),(.*)")) {
                         String[] fields = s.split(",");
 
                         String name = fields[0];
-                        boolean isPerishable = Boolean.parseBoolean(fields[1]);
-                        float makeCost = Float.parseFloat(fields[2]);
-                        int stock =  Integer.parseInt(fields[3]);
-                        float sellPrice = Float.parseFloat(fields[4]);
+                        String category = fields[1];
+                        boolean isPerishable = Boolean.parseBoolean(fields[2]);
+                        double makeCost = Double.parseDouble(fields[3]);
+                        int stock =  Integer.parseInt(fields[4]);
+                        double sellPrice = Double.parseDouble(fields[5]);
 
-                        Items item = new Items(name, isPerishable, makeCost, stock, sellPrice);
+                        Items item = new Items(name, category, isPerishable, makeCost, stock, sellPrice);
 
                         System.out.println("Item added");
                     } else {
