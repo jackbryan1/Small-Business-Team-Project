@@ -20,8 +20,8 @@ public class Item {
     @Column(name = "sellPrice")
     private float sellPrice;
 
-    public Item(int id, String name, boolean isPerishable, float makeCost, int stock, float sellPrice) {
-        this.id = id;
+    public Item(String name, boolean isPerishable, float makeCost, int stock, float sellPrice) {
+        //this.id = id;
         this.name = name;
         this.isPerishable = isPerishable;
         this.makeCost = makeCost;
