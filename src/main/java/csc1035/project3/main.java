@@ -35,10 +35,14 @@ public class main {
                     s = scanner.nextLine();
                     if (s.matches("(.*),(.*),(.*),(.*),(.*)")) {
                         String[] fields = s.split(",");
-                        //Create new item here
-                        for (int i = 0; i < 5; i++) {
-                            System.out.println(fields[i]);
-                        }
+                        String name = fields[0];
+                        boolean isPerishable = Boolean.parseBoolean(fields[1]);
+                        float makeCost = Float.parseFloat(fields[2]);
+                        int stock =  Integer.parseInt(fields[3]);
+                        float sellPrice = Float.parseFloat(fields[4]);
+
+                        Item item = new Item(name, isPerishable, makeCost, stock, sellPrice);
+
                         System.out.println("Item added");
                     } else {
                         System.out.println("Wrong format.");
