@@ -4,9 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Items")
-public class Item {
+public class Items {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
     @Column(name = "name")
@@ -14,14 +14,13 @@ public class Item {
     @Column(name = "isPerishable")
     private boolean isPerishable;
     @Column(name = "makeCost")
-    private float makeCost;
+    private double makeCost;
     @Column(name = "stock")
     private int stock;
     @Column(name = "sellPrice")
-    private float sellPrice;
+    private double sellPrice;
 
-    public Item(String name, boolean isPerishable, float makeCost, int stock, float sellPrice) {
-        //this.id = id;
+    public Items(String name, boolean isPerishable, double makeCost, int stock, double sellPrice) {
         this.name = name;
         this.isPerishable = isPerishable;
         this.makeCost = makeCost;
@@ -41,7 +40,7 @@ public class Item {
         return isPerishable;
     }
 
-    public float getMakeCost() {
+    public double getMakeCost() {
         return makeCost;
     }
 
@@ -57,7 +56,7 @@ public class Item {
         this.stock = stock;
     }
 
-    public float getSellPrice() {
+    public double getSellPrice() {
         return sellPrice;
     }
 

@@ -11,11 +11,11 @@ public class ItemsDB {
     Session session;
 
     // Adds item objects to the item database from an arraylist.
-    public void create(ArrayList<Item> itemArray) {
+    public void create(ArrayList<Items> itemArray) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            for (Item item : itemArray) {
+            for (Items item : itemArray) {
                 session.save(item);
             }
             session.getTransaction().commit();
@@ -30,11 +30,16 @@ public class ItemsDB {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            List Items = session.createQuery("FROM Item").list();
+            List Items = session.createQuery("FROM ITEMS").list();
             session.close();
         } catch (HibernateException e) {
-        if (session != null) session.getTransaction().rollback();
-        e.printStackTrace();
-    } 
+            if (session != null) session.getTransaction().rollback();
+            e.printStackTrace();
+        }
+    }
 
+    public static void main(String[] args) {
+        Items item = new Items("test", true, 13.00, 14, 14.00);
+
+    }
 }
