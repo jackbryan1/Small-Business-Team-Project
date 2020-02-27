@@ -3,22 +3,21 @@ package csc1035.project3;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ITEM")
+@Table(name = "Items")
 public class Item {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
-    @Column(name = "item_name")
+    @Column(name = "name")
     private String name;
-    @Column(name = "is_perishable")
+    @Column(name = "isPerishable")
     private boolean isPerishable;
-    @Column(name = "make_coat")
+    @Column(name = "makeCost")
     private float makeCost;
     @Column(name = "stock")
     private int stock;
-    @Column(name = "price")
+    @Column(name = "sellPrice")
     private float sellPrice;
 
     public Item(int id, String name, boolean isPerishable, float makeCost, int stock, float sellPrice) {
