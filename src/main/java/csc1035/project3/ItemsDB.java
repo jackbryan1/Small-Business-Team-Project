@@ -8,11 +8,10 @@ import java.util.List;
 
 public class ItemsDB {
 
-    //Session session;
+    static Session session;
 
     // Adds item objects to the item database from an arraylist.
     public static void create(ArrayList<Items> itemArray) {
-        Session session;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -20,14 +19,15 @@ public class ItemsDB {
                 session.save(item);
             }
             session.getTransaction().commit();
-            session.close();
         } catch (HibernateException e) {
             if (session != null) session.getTransaction().rollback();
-                e.printStackTrace();
-            }
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
+    }
 
-    public static void read() {
+    /*public static void read() {
         Session session;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -38,7 +38,7 @@ public class ItemsDB {
             if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
         }
-    }
+    }*/
 
     public static void main(String[] args) {
         Items item = new Items("test", "test", true, 13.00, 14, 14.00);
