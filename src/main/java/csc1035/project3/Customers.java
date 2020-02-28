@@ -58,4 +58,9 @@ public class Customers {
     public void setPhoneExt(String phoneExt) {
         this.phoneExt = phoneExt;
     }
+
+    @Override
+    public String toString(){
+        return String.format("ID: %s, Surname: %s, Email: %s, phoneExt: %s", getCid(), getEmail(), getSurname(), getPhoneExt());
+    }
 }

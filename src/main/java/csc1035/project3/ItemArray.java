@@ -19,7 +19,7 @@ public class ItemArray{
             FileReader fr = new FileReader("src/main/resources/stock.sample.csv");
             Scanner s = new Scanner(fr).useDelimiter(",");
             while(s.hasNext()){
-                String[] temp = new String[6];
+                String[] temp;
                 temp = s.nextLine().split(",");
                 items.add(new Items(temp[0], temp[1], Boolean.parseBoolean(temp[2]), Double.parseDouble(temp[3]), Integer.parseInt(temp[4]), Double.parseDouble(temp[5])));
             }
