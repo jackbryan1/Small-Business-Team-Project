@@ -33,7 +33,7 @@ public class main {
                 case ("2"):
                     System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
                     s = scanner.nextLine();
-                    if (s.matches("(.*),(.*),(.*),(.*),(.*),(.*)")) {
+                    if (s.matches("(\\w+),(\\w+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)")) {
                         String[] fields = s.split(",");
 
                         String name = fields[0];
