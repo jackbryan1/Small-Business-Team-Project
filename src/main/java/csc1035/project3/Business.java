@@ -10,7 +10,7 @@ public interface Business {
      * @return : Returns the stock available.
      */
 
-    String printReceipt(Items item, Customer customer, Transaction transaction);
+    String printReceipt(Items item, Customers customer, Transaction transaction);
     /**
      * Prints a receipt depending on the items bought.
      *
