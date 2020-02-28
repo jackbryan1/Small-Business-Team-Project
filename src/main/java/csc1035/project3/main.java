@@ -33,7 +33,7 @@ public class main {
                 case ("2"):
                     System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
                     s = scanner.nextLine();
-                    if (s.matches("(.*),(.*),(.*),(.*),(.*),(.*)")) {
+                    if (s.matches("(\\w+),(\\w+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)")) {
                         String[] fields = s.split(",");
 
                         String name = fields[0];
@@ -45,22 +45,36 @@ public class main {
 
                         Items item = new Items(name, category, isPerishable, makeCost, stock, sellPrice);
 
+                        //Add item
+
                         System.out.println("Item added");
                     } else {
                         System.out.println("Wrong format.");
                     }
                     break;
                 case ("3"):
-                    System.out.println("Check stock");
+                    System.out.println("Name of Item:");
+                    s = scanner.nextLine();
+                    //Read stock of item named s
                     break;
                 case ("4"):
-                    System.out.println("Update stock");
+                    System.out.println("Item to update:(name,stock)");
+                    s = scanner.nextLine();
+                    if (s.matches("(\\w+),([0-9]{1,10})")) {
+                        String[] array = s.split(",");
+                        //Update stock of item named array[0] to array[1]
+                    } else {
+                        System.out.println("Wrong format.");
+                    }
                     break;
                 case ("5"):
-                    System.out.println("Delete item");
+                    System.out.println("Name of item:");
+                    s = scanner.nextLine();
+                    //Delete item named s
                     break;
                 case ("6"):
                     System.out.println("Starts transaction");
+                    break;
             }
         }
     }
