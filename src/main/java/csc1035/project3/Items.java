@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "Items")
 public class Items {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
     @Column(name = "name")
@@ -29,6 +29,9 @@ public class Items {
         this.makeCost = makeCost;
         this.stock = stock;
         this.sellPrice = sellPrice;
+    }
+
+    public Items() {
     }
 
     public int getId() {

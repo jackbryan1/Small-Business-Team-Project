@@ -27,18 +27,17 @@ public class ItemsDB {
         }
     }
 
-    /*public static void read() {
-        Session session;
+    public static void read() {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            List Items = session.createQuery("FROM ITEMS").list();
+            List Items = session.createQuery("FROM Items").list();
             session.close();
         } catch (HibernateException e) {
             if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
         }
-    }*/
+    }
 
     public static void main(String[] args) {
         Items item = new Items("test", "test", true, 13.00, 14, 14.00);

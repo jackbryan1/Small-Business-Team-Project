@@ -1,0 +1,50 @@
+package csc1035.project3;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class CustomerDB {
+	
+	// make private and use static?
+    static Session session;
+
+    public static void InsertCustomer(List<Customers> customers){
+        // Take in an ArrayList of Customers and add to Database
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            // Add each customer to DB
+            for (Customers customer : customers){
+                session.save(customer);
+            }
+
+            session.getTransaction().commit();
+
+        } catch (HibernateException e) {
+            if (session != null) session.getTransaction().rollback();
+            e.printStackTrace();
+
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Customers c1 = new Customers("Test", "abc", "12345");
+        Customers c2 = new Customers("Test2", "abc2", "12342");
+
+        List<Customers> testCustomers = new ArrayList<>();
+        testCustomers.add(c1);
+        testCustomers.add(c2);
+
+        InsertCustomer(testCustomers);
+    }
+
+
+}

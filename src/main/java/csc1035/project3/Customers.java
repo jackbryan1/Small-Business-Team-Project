@@ -4,9 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Customers")
-public class Customer {
+public class Customers {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cid", updatable = false, nullable = false)
     private int cid;
     @Column(name = "surname")
@@ -16,8 +16,12 @@ public class Customer {
     @Column(name = "phoneExt")
     private String phoneExt;
 
-    public Customer(int cid, String surname, String email, String phoneExt) {
-        this.cid = cid;
+    public Customers(){
+
+    }
+
+    public Customers(String surname, String email, String phoneExt) {
+        //this.cid = cid;
         this.surname = surname;
         this.email = email;
         this.phoneExt = phoneExt;
