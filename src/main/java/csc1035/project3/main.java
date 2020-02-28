@@ -17,7 +17,7 @@ public class main {
                             "[3]:Check stock \n" +
                             "[4]:Update stock \n" +
                             "[5]:Delete item \n" +
-                            "[6]:Transaction \n"
+                            "[6]:Transaction"
                     );
             s = scanner.nextLine();
             switch(s) {
@@ -33,7 +33,7 @@ public class main {
                 case ("2"):
                     System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
                     s = scanner.nextLine();
-                    if (s.matches("(\\w+),(\\w+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)")) {
+                    if (s.matches("(.+),(.+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)")) {
                         String[] fields = s.split(",");
 
                         String name = fields[0];
@@ -56,13 +56,15 @@ public class main {
                     System.out.println("Name of Item:");
                     s = scanner.nextLine();
                     //Read stock of item named s
+                    //System.out.println("Stock: stock");
                     break;
                 case ("4"):
                     System.out.println("Item to update:(name,stock)");
                     s = scanner.nextLine();
-                    if (s.matches("(\\w+),([0-9]{1,10})")) {
+                    if (s.matches("(.+),([0-9]{1,10})")) {
                         String[] array = s.split(",");
                         //Update stock of item named array[0] to array[1]
+                        System.out.println("Stock updated.");
                     } else {
                         System.out.println("Wrong format.");
                     }
@@ -71,6 +73,7 @@ public class main {
                     System.out.println("Name of item:");
                     s = scanner.nextLine();
                     //Delete item named s
+                    System.out.println("Item deleted");
                     break;
                 case ("6"):
                     System.out.println("Starts transaction");
