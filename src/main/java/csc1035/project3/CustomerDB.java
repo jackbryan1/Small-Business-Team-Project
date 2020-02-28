@@ -39,9 +39,6 @@ public class CustomerDB {
         Customers c1 = new Customers("Test", "abc", "12345");
         Customers c2 = new Customers("Test2", "abc2", "12342");
 
-        System.out.println(c1.getCid());
-        System.out.println(c2.getCid());
-
         List<Customers> testCustomers = new ArrayList<>();
         testCustomers.add(c1);
         testCustomers.add(c2);
