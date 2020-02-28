@@ -27,16 +27,18 @@ public class ItemsDB {
         }
     }
 
-    public static void read() {
+    public static List read() {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             List Items = session.createQuery("FROM Items").list();
             session.close();
+            return Items;
         } catch (HibernateException e) {
             if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
         }
+        return null;
     }
 
     public static void main(String[] args) {
@@ -44,5 +46,6 @@ public class ItemsDB {
         ArrayList<Items> test = new ArrayList<>();
         test.add(item);
         create(test);
+        List list = read();
     }
 }
