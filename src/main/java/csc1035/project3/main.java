@@ -15,7 +15,7 @@ public class main {
             System.out.println("[0]:End \n" +
                             "[1]:Print Receipt \n" +
                             "[2]:Add new item \n" +
-                            "[3]:Check stock \n" +
+                            "[3]:Search \n" +
                             "[4]:Update stock \n" +
                             "[5]:Delete item \n" +
                             "[6]:Transaction"
@@ -23,16 +23,16 @@ public class main {
             s = scanner.nextLine();
             switch(s) {
                 default:
-                    System.out.println("No such command");
+                    System.out.println("No such command.");
                     break;
                 case ("0"):
-                    System.out.println("Program closed");
+                    System.out.println("Program closed.");
                     return;
                 case ("1"):
                     System.out.println("Prints receipt");
                     break;
                 case ("2"):
-                    ArrayList<Items> itemArray = new ArrayList<Items>();
+                    ArrayList<Items> itemArray = new ArrayList<>();
                     boolean boo = true;
                     while(boo) {
                         System.out.println("List of items:");
@@ -40,9 +40,9 @@ public class main {
                             System.out.println(item.getName());
                         }
                         if(itemArray.size() == 0) {
-                            System.out.println("No items");
+                            System.out.println("No items.");
                         }
-                        System.out.println("Options");
+                        System.out.println("Options:");
                         System.out.println("[0]:Add new item");
                         System.out.println("[1]:Push to database");
                         s = scanner.nextLine();
@@ -72,8 +72,7 @@ public class main {
                 case ("3"):
                     System.out.println("Name of Item:");
                     s = scanner.nextLine();
-                    //Read stock of item named s
-                    //System.out.println("Stock: stock");
+                    //ItemsDB.read(s)
                     break;
                 case ("4"):
                     System.out.println("Item to update:(name,stock)");
