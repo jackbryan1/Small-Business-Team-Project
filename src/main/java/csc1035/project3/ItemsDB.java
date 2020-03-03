@@ -1,6 +1,5 @@
 package csc1035.project3;
 
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import java.util.ArrayList;
@@ -27,26 +26,44 @@ public class ItemsDB {
         }
     }
 
-    public static List read(String item) {
+    public static void readSearch(String search) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            List Items = session.createQuery("FROM Items where name like '%"+item+"%'").list();
+            List Items = session.createQuery("FROM Items where name like '%"+search+"%'").list();
             session.close();
-            return Items;
+            System.out.format("%-10s%-32s%-16s%-2s", "ID", "NAME", "CATEGORY", "PRICE");
+            System.out.println();
+            for (Object item : Items) {
+                Items itemObj = Items.class.cast(item);
+                System.out.format("%-10d%-32s%-16s%.2f", itemObj.getId(), itemObj.getName(), itemObj.getCategory(), itemObj.getSellPrice());
+                System.out.println();
+            }
+            if (Items.size() == 1) {
+                Items select = Items.class.cast(Items.get(0));
+                idSearch(select.getId());
+            }
         } catch (HibernateException e) {
             if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
         }
-        return null;
+    }
+
+    public static void idSearch(int id) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        List item = session.createQuery("FROM Items where id = "+id+"").list();
+        session.close();
+        System.out.println(item);
     }
 
     public static void main(String[] args) {
         //Items item = new Items("test", "test", true, 13.00, 14, 14.00);
-        ArrayList<Items> test = ItemArray.itemArray();
+        //ArrayList<Items> test = ItemArray.itemArray();
         //test.add(item);
-        create(test);
-        //List list = read("es");
+        //create(test);
+        readSearch("Homemade");
+        //idSearch(11);
         //System.out.println(list);
     }
 }
