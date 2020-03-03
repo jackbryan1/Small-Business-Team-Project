@@ -1,5 +1,6 @@
 package csc1035.project3;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
@@ -31,19 +32,35 @@ public class main {
                     System.out.println("Prints receipt");
                     break;
                 case ("2"):
-                    System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
-                    s = scanner.nextLine();
-                    if (s.matches("(.+),(.+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)")) {
-                        String[] fields = s.split(",");
+                    ArrayList<Items> itemArray = new ArrayList<Items>();
+                    boolean boo = true;
+                    while(boo) {
+                        System.out.println("List of items:");
+                        for(Items item: itemArray) {
+                            System.out.println(item.getName());
+                        }
+                        if(itemArray.size() == 0) {
+                            System.out.println("No items");
+                        }
+                        System.out.println("Options");
+                        System.out.println("[0]:Add new item");
+                        System.out.println("[1]:Push to database");
+                        s = scanner.nextLine();
+                        switch(s) {
+                            case("0"):
+                                System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
+                                s = scanner.nextLine();
+                                if (s.matches("(.+),(.+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)")) {
+                                    String[] fields = s.split(",");
 
-                        String name = fields[0];
-                        String category = fields[1];
-                        boolean isPerishable = Boolean.parseBoolean(fields[2]);
-                        double makeCost = Double.parseDouble(fields[3]);
-                        int stock =  Integer.parseInt(fields[4]);
-                        double sellPrice = Double.parseDouble(fields[5]);
+                                    String name = fields[0];
+                                    String category = fields[1];
+                                    boolean isPerishable = Boolean.parseBoolean(fields[2]);
+                                    double makeCost = Double.parseDouble(fields[3]);
+                                    int stock = Integer.parseInt(fields[4]);
+                                    double sellPrice = Double.parseDouble(fields[5]);
 
-                        Items item = new Items(name, category, isPerishable, makeCost, stock, sellPrice);
+                                    Items item = new Items(name, category, isPerishable, makeCost, stock, sellPrice);
 
                         //Add item
 
