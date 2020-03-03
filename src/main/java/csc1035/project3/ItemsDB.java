@@ -52,12 +52,49 @@ public class ItemsDB {
         }
     }
 
-    public static void idSearch(int id) {
-        session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        List item = session.createQuery("FROM Items where id = "+id+"").list();
-        session.close();
-        System.out.println(item);
+    public static Items idSearch(int id) {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Items item = session.get(Items.class, id);
+            session.close();
+            System.out.println(item);
+            return item;
+        } catch (HibernateException e) {
+            if (session != null) session.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public static void update(Items item) {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.update(item);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (session != null) session.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void delete(Items item) {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.delete(item);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (session != null) session.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     public static void main(String[] args) {
@@ -65,8 +102,9 @@ public class ItemsDB {
         //ArrayList<Items> test = ItemArray.itemArray();
         //test.add(item);
         //create(test);
-        readSearch("Homemade Str");
-        idSearch(100);
+        //readSearch("Homemade Str");
+        //Items test = idSearch(10);
+        //delete(test);
         //System.out.println(list);
     }
 }

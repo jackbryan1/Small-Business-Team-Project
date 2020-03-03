@@ -13,7 +13,7 @@ public class TrickyTrinkets implements Business {
             int id = item.getId();
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Query available = (Query) session.createQuery("FROM Item i SELECT i.stock WHERE id = "+id+"");
+            Query available = (Query) session.createQuery("FROM Items SELECT stock WHERE id = "+id+"");
             session.getTransaction().commit();
             session.close();
             String availableString = available.toString();
