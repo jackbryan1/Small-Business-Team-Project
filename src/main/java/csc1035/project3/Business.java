@@ -14,7 +14,7 @@ public interface Business {
     /**
      * Prints a receipt depending on the items bought.
      *
-     * @param : Item is the items that have been bought.
+     * @param : Item is the items that have been bought for specified customer.
      * @return : Returns the receipt that has been created.
      */
 
