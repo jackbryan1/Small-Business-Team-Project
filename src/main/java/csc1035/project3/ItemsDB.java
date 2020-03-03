@@ -27,11 +27,11 @@ public class ItemsDB {
         }
     }
 
-    public static List read() {
+    public static List read(String item) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            List Items = session.createQuery("FROM Items").list();
+            List Items = session.createQuery("FROM Items where name like '%"+item+"%'").list();
             session.close();
             return Items;
         } catch (HibernateException e) {
@@ -42,10 +42,11 @@ public class ItemsDB {
     }
 
     public static void main(String[] args) {
-        Items item = new Items("test", "test", true, 13.00, 14, 14.00);
-        ArrayList<Items> test = new ArrayList<>();
-        test.add(item);
+        //Items item = new Items("test", "test", true, 13.00, 14, 14.00);
+        ArrayList<Items> test = ItemArray.itemArray();
+        //test.add(item);
         create(test);
-        List list = read();
+        //List list = read("es");
+        //System.out.println(list);
     }
 }
