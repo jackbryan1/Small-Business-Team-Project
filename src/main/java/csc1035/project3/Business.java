@@ -1,5 +1,7 @@
 package csc1035.project3;
 
+import java.util.List;
+
 public interface Business {
 
     int availableStock(Items item);
