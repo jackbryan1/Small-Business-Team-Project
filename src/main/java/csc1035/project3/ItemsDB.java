@@ -39,7 +39,10 @@ public class ItemsDB {
                 System.out.format("%-10d%-32s%-16s%.2f", itemObj.getId(), itemObj.getName(), itemObj.getCategory(), itemObj.getSellPrice());
                 System.out.println();
             }
-            if (Items.size() == 1) {
+            if (Items.size() == 0) {
+                System.out.println("No items match the search term.");
+            } else if (Items.size() == 1) {
+                System.out.println("Only one item matches search term");
                 Items select = Items.class.cast(Items.get(0));
                 idSearch(select.getId());
             }
@@ -62,8 +65,8 @@ public class ItemsDB {
         //ArrayList<Items> test = ItemArray.itemArray();
         //test.add(item);
         //create(test);
-        readSearch("Homemade");
-        //idSearch(11);
+        readSearch("Homemade Str");
+        idSearch(100);
         //System.out.println(list);
     }
 }
