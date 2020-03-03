@@ -3,8 +3,6 @@ package csc1035.project3;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import javax.management.Query;
-import java.util.List;
-
 
 public class TrickyTrinkets implements Business {
 
@@ -12,11 +10,14 @@ public class TrickyTrinkets implements Business {
 
     public int availableStock(Items item){
         try{
+            int id = item.getId();
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            String available = session.createQuery("SELECT stock FROM Items i WHERE i.name = item").toString();
+            Query available = (Query) session.createQuery("FROM Items SELECT stock WHERE id = "+id+"");
+            session.getTransaction().commit();
             session.close();
-            return Integer.parseInt(available);
+            String availableString = available.toString();
+            return Integer.parseInt(availableString);
         } catch(HibernateException e){
             if(session != null) session.getTransaction().rollback();
             e.printStackTrace();
