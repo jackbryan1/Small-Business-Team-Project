@@ -4,29 +4,34 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Items")
-public class Item {
+public class Items {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
     @Column(name = "name")
     private String name;
+    @Column(name = "category")
+    private String category;
     @Column(name = "isPerishable")
     private boolean isPerishable;
     @Column(name = "makeCost")
-    private float makeCost;
+    private double makeCost;
     @Column(name = "stock")
     private int stock;
     @Column(name = "sellPrice")
-    private float sellPrice;
+    private double sellPrice;
 
-    public Item(int id, String name, boolean isPerishable, float makeCost, int stock, float sellPrice) {
-        this.id = id;
+    public Items(String name, String category, boolean isPerishable, double makeCost, int stock, double sellPrice) {
         this.name = name;
+        this.category = category;
         this.isPerishable = isPerishable;
         this.makeCost = makeCost;
         this.stock = stock;
         this.sellPrice = sellPrice;
+    }
+
+    public Items() {
     }
 
     public int getId() {
@@ -37,15 +42,23 @@ public class Item {
         return name;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public boolean isPerishable() {
         return isPerishable;
     }
 
-    public float getMakeCost() {
+    public double getMakeCost() {
         return makeCost;
     }
 
-    public void setMakeCost(float makeCost) {
+    public void setMakeCost(double makeCost) {
         this.makeCost = makeCost;
     }
 
@@ -57,11 +70,11 @@ public class Item {
         this.stock = stock;
     }
 
-    public float getSellPrice() {
+    public double getSellPrice() {
         return sellPrice;
     }
 
-    public void setSellPrice(float sellPrice) {
+    public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
     }
 
