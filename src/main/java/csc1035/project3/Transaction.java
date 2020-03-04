@@ -1,13 +1,7 @@
 package csc1035.project3;
 
 public class Transaction {
-    private int tid;
+    public void transaction(Items[] items){
 
-    public int getTid() {
-        return tid;
-    }
-
-    public void setTid(int tid) {
-        this.tid = tid;
     }
 }
