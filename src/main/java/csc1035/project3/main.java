@@ -62,11 +62,18 @@ public class main {
 
                                     Items item = new Items(name, category, isPerishable, makeCost, stock, sellPrice);
 
-                        //Add item
-
-                        System.out.println("Item added");
-                    } else {
-                        System.out.println("Wrong format.");
+                                    itemArray.add(item);
+                                    System.out.println("Item added.");
+                                    break;
+                                } else {
+                                    System.out.println("Wrong format.");
+                                    break;
+                                }
+                            case ("1"):
+                                ItemsDB.create(itemArray);
+                                running = false;
+                                break;
+                        }
                     }
                     break;
                 case ("3"):
