@@ -25,14 +25,5 @@ public class ItemArray{
         }
         return null;
     }
-
-    public static ArrayList<Items> arrayListFormat(ArrayList<String> input){
-        for (String entry : input) {
-            String [] temp = entry.split(",");
-            items.add(new Items(temp[0], temp[1], Boolean.parseBoolean(temp[2]), Double.parseDouble(temp[3]), Integer.parseInt(temp[4]), Double.parseDouble(temp[5])));
-        }
-        return items;
-        
-
-
+    
 }
