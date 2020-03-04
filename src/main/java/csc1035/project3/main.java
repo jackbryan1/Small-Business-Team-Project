@@ -47,6 +47,9 @@ public class main {
                         System.out.println("[1]:Push to database");
                         s = scanner.nextLine();
                         switch(s) {
+                            default:
+                                System.out.println("No such option.");
+                                break;
                             case("0"):
                                 System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
                                 s = scanner.nextLine();
@@ -88,7 +91,6 @@ public class main {
                 case ("5"):
                     System.out.println("Name of item:");
                     s = scanner.nextLine();
-                    //Delete item named s
                     System.out.println("Item deleted");
                     break;
                 case ("6"):
