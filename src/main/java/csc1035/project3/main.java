@@ -124,6 +124,7 @@ public class main {
                         switch (s) {
                             default:
                                 System.out.println("No such option.");
+                                break;
                             case("0"):
                                 System.out.println("Name of item:");
                                 s = scanner.nextLine();
@@ -145,9 +146,10 @@ public class main {
                                 }
                                 break;
                             case("1"):
-                                //Goes to transaction class here.
+                                Transaction.transaction(scannedItems);
                                 System.out.println("Transaction completed.");
                                 running = false;
+                                break;
                         }
                     }
                     break;
