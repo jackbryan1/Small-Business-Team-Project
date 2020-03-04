@@ -89,8 +89,21 @@ public class main {
                 case ("5"):
                     System.out.println("Name of item:");
                     s = scanner.nextLine();
-                    //Delete item named s
-                    System.out.println("Item deleted");
+                    ArrayList options = ItemsDB.readSearch(s);
+                    if (!options.isEmpty()) {
+                        System.out.println("ID Options:");
+                        for (Object o : options) {
+                            System.out.println(o);
+                        }
+                        s = scanner.nextLine();
+                        int id = Integer.parseInt(s);
+                        if (options.contains(id)) {
+                            ItemsDB.delete(ItemsDB.idSearch(id));
+                            System.out.println("Item deleted");
+                        } else {
+                            System.out.println("This ID is not an option.");
+                        }
+                    }
                     break;
                 case ("6"):
                     System.out.println("Starts transaction");
