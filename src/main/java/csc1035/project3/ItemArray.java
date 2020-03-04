@@ -9,12 +9,7 @@ public class ItemArray{
 
     private static ArrayList<Items> items = new ArrayList<>();
 
-    public static void main(String args[]){
-        ItemArray array1 = new ItemArray();
-        array1.itemArray();
-    }
-
-    public static ArrayList<Items> itemArray(){
+    public static ArrayList<Items> csvLoader(){
         try{
             FileReader fr = new FileReader("src/main/resources/stock.sample.csv");
             Scanner s = new Scanner(fr).useDelimiter(",");
@@ -30,5 +25,14 @@ public class ItemArray{
         }
         return null;
     }
+
+    public static ArrayList<Items> arrayListFormat(ArrayList<String> input){
+        for (String entry : input) {
+            String [] temp = entry.split(",");
+            items.add(new Items(temp[0], temp[1], Boolean.parseBoolean(temp[2]), Double.parseDouble(temp[3]), Integer.parseInt(temp[4]), Double.parseDouble(temp[5])));
+        }
+        return items;
+        
+
 
 }
