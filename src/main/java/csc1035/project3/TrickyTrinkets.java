@@ -17,7 +17,7 @@ public class TrickyTrinkets implements Business {
             session.getTransaction().commit();
             session.close();
             String availableString = available.toString();
-            System.out.println(Integer.parseInt(availableString));
+            return Integer.parseInt(availableString);
         } catch(HibernateException e){
             if(session != null) session.getTransaction().rollback();
             e.printStackTrace();
@@ -25,7 +25,7 @@ public class TrickyTrinkets implements Business {
         return 0;
     }
 
-    public String printReceipt(Items item, Customers customer, Transaction transaction){return null;}
+    public String printReceipt(Items item, Customers customer){return null;}
 
     public void updateStock(Items item){}
 
