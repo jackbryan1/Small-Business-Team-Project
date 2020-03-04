@@ -26,16 +26,18 @@ public class ItemsDB {
         }
     }
 
-    public static void readSearch(String search) {
+    public static ArrayList<Integer> readSearch(String search) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             List Items = session.createQuery("FROM Items where name like '%"+search+"%'").list();
             session.close();
+            ArrayList options = new ArrayList<Integer>();
             System.out.format("%-10s%-32s%-16s%-2s", "ID", "NAME", "CATEGORY", "PRICE");
             System.out.println();
             for (Object item : Items) {
                 Items itemObj = Items.class.cast(item);
+                options.add(itemObj.getId());
                 System.out.format("%-10d%-32s%-16s%.2f", itemObj.getId(), itemObj.getName(), itemObj.getCategory(), itemObj.getSellPrice());
                 System.out.println();
             }
@@ -46,10 +48,12 @@ public class ItemsDB {
                 Items select = Items.class.cast(Items.get(0));
                 idSearch(select.getId());
             }
+            return options;
         } catch (HibernateException e) {
             if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
         }
+        return null;
     }
 
     public static Items idSearch(int id) {
@@ -102,8 +106,10 @@ public class ItemsDB {
         //ArrayList<Items> test = ItemArray.itemArray();
         //test.add(item);
         //create(test);
-        //readSearch("Homemade Str");
-        //Items test = idSearch(10);
+        Items test = idSearch(10);
+        test.setName("Large Animal Sculpture");
+        update(test);
+        readSearch("");
         //delete(test);
         //System.out.println(list);
     }
