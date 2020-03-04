@@ -51,7 +51,8 @@ public class ItemsDB {
             for (Object item : Items) {
                 Items itemObj = Items.class.cast(item);
                 options.add(itemObj.getId());
-                System.out.format("%-10d%-32s%-16s%.2f", itemObj.getId(), itemObj.getName(), itemObj.getCategory(), itemObj.getSellPrice());
+                System.out.format("%-10d%-32s%-16s%.2f", itemObj.getId(), itemObj.getName(), itemObj.getCategory(),
+                        itemObj.getSellPrice());
                 System.out.println();
             }
             if (Items.size() == 0) {
@@ -141,6 +142,5 @@ public class ItemsDB {
         //update(test);
         //readSearch("");
         //delete(test);
-        //System.out.println(list);
     }
 }
