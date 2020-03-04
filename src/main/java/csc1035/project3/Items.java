@@ -42,6 +42,10 @@ public class Items {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getCategory() {
         return category;
     }

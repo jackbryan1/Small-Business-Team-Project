@@ -106,8 +106,10 @@ public class ItemsDB {
         //ArrayList<Items> test = ItemArray.itemArray();
         //test.add(item);
         //create(test);
-        //readSearch("a");
-        Items test = idSearch(100);
+        Items test = idSearch(10);
+        test.setName("Large Animal Sculpture");
+        update(test);
+        readSearch("");
         //delete(test);
         //System.out.println(list);
     }
