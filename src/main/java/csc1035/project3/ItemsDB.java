@@ -9,7 +9,12 @@ public class ItemsDB {
 
     static Session session;
 
-    // Adds item objects to the item database from an arraylist.
+    /**
+     * Takes an arrayList of items and inputs each one into the database. Designed to work over an ArrayList to minimise
+     * separate connections to the database when adding items - allowing for bulk uploads.
+     *
+     * @param itemArray : An ArrayList of Items class objects should be constructed prior to being input here.
+     */
     public static void create(ArrayList<Items> itemArray) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -26,6 +31,14 @@ public class ItemsDB {
         }
     }
 
+    /**
+     *  Searches the database for items which contain the search term in their name and returns the available choices in
+     *  the form of an ArrayList. If only one option matches the search term then idSearch is called immediately and the
+     *  Items class object is ultimately returned.
+     *
+     * @param search : The search term that wants to be found in the Items database.
+     * @return : Returns an ArrayList of integers corresponding to the Items ids that match the search term.
+     */
     public static ArrayList<Integer> readSearch(String search) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -56,6 +69,12 @@ public class ItemsDB {
         return null;
     }
 
+    /**
+     * Returns the Items class object from the database matching the id specified.
+     *
+     * @param id : Primary key of the Items object in the database.
+     * @return : Returns the Items object from the database.
+     */
     public static Items idSearch(int id) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -73,6 +92,11 @@ public class ItemsDB {
         return null;
     }
 
+    /**
+     * Takes an Items object and updates it in the database.
+     *
+     * @param item : A (hopefully) modified Items class object from what is in the database.
+     */
     public static void update(Items item) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -87,6 +111,11 @@ public class ItemsDB {
         }
     }
 
+    /**
+     * Allows for deletion of an entry in the database.
+     *
+     * @param item : Takes an Items class object and removes it, designed to work with idSearch.
+     */
     public static void delete(Items item) {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -101,15 +130,16 @@ public class ItemsDB {
         }
     }
 
+    // To remove once methods integrated with rest of the code.
     public static void main(String[] args) {
         //Items item = new Items("test", "test", true, 13.00, 14, 14.00);
         //ArrayList<Items> test = ItemArray.itemArray();
         //test.add(item);
         //create(test);
-        Items test = idSearch(10);
-        test.setName("Large Animal Sculpture");
-        update(test);
-        readSearch("");
+        //Items test = idSearch(10);
+        //test.setName("Large Animal Sculpture");
+        //update(test);
+        //readSearch("");
         //delete(test);
         //System.out.println(list);
     }
