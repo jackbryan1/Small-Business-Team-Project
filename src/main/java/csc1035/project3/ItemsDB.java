@@ -33,8 +33,7 @@ public class ItemsDB {
 
     /**
      *  Searches the database for items which contain the search term in their name and returns the available choices in
-     *  the form of an ArrayList. If only one option matches the search term then idSearch is called immediately and the
-     *  Items class object is ultimately returned.
+     *  the form of an ArrayList. If no options match a message is displayed.
      *
      * @param search : The search term that wants to be found in the Items database.
      * @return : Returns an ArrayList of integers corresponding to the Items ids that match the search term.
@@ -57,10 +56,6 @@ public class ItemsDB {
             }
             if (Items.size() == 0) {
                 System.out.println("No items match the search term.");
-            } else if (Items.size() == 1) {
-                System.out.println("Only one item matches search term");
-                Items select = Items.class.cast(Items.get(0));
-                idSearch(select.getId());
             }
             return options;
         } catch (HibernateException e) {
