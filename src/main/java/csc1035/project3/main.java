@@ -21,6 +21,7 @@ public class main {
                             "[6]:Transaction"
                     );
             s = scanner.nextLine();
+            boolean running;
             switch(s) {
                 default:
                     System.out.println("No such command");
@@ -33,7 +34,7 @@ public class main {
                     break;
                 case ("2"):
                     ArrayList<Items> itemArray = new ArrayList<>();
-                    boolean running = true;
+                    running = true;
                     while (running) {
                         System.out.println("List of items:");
                         for (Items item : itemArray) {
@@ -146,7 +147,7 @@ public class main {
                                 }
                                 break;
                             case("1"):
-                                Transaction.transaction(scannedItems);
+                                //Transaction.transaction(scannedItems);
                                 System.out.println("Transaction completed.");
                                 running = false;
                                 break;
