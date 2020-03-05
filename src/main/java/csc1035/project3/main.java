@@ -77,8 +77,21 @@ public class main {
                 case ("3"):
                     System.out.println("Name of Item:");
                     s = scanner.nextLine();
-                    //Read stock of item named s
-                    //System.out.println("Stock: stock");
+                    options = ItemsDB.readSearch(s);
+                    if (!options.isEmpty()) {
+                        System.out.println("ID Options:");
+                        for (Integer option : options) {
+                            System.out.println(option);
+                        }
+                        s = scanner.nextLine();
+                        int id = Integer.parseInt(s);
+                        if (options.contains(id)) {
+                            System.out.printf("Stock: %s", ItemsDB.idSearch(id).getStock());
+                            System.out.println();
+                        } else {
+                            System.out.println("This ID is not an option.");
+                        }
+                    }
                     break;
 
                 case ("4"):
