@@ -2,6 +2,7 @@ package csc1035.project3;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,9 +130,9 @@ public class ItemsDB {
     // To remove once methods integrated with rest of the code.
     public static void main(String[] args) {
         //Items item = new Items("test", "test", true, 13.00, 14, 14.00);
-        //ArrayList<Items> test = ItemArray.itemArray();
+        ArrayList<Items> test = ItemArray.csvLoader();
         //test.add(item);
-        //create(test);
+        create(test);
         //Items test = idSearch(10);
         //test.setName("Large Animal Sculpture");
         //update(test);
