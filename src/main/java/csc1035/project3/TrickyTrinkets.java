@@ -25,7 +25,10 @@ public class TrickyTrinkets implements Business {
         return 0;
     }
 
-    public String printReceipt(Items item, Customers customer){return null;}
+    public String printReceipt(Items item, Customers customer){
+        Transaction t1 = new Transaction();
+        return t1.toString();
+    }
 
     public void updateStock(Items item){}
 
