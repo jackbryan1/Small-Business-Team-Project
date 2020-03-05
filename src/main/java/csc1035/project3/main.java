@@ -14,11 +14,12 @@ public class main {
             System.out.println("Next Command");
             System.out.println("[0]:End \n" +
                             "[1]:Print Receipt \n" +
-                            "[2]:Add new item \n" +
-                            "[3]:Check stock \n" +
-                            "[4]:Update stock \n" +
-                            "[5]:Delete item \n" +
-                            "[6]:Transaction"
+                            "[2]:Add New Item \n" +
+                            "[3]:Check Stock \n" +
+                            "[4]:Update Stock \n" +
+                            "[5]:Delete Item \n" +
+                            "[6]:Transaction \n" +
+                            "[7]:List of Customers"
                     );
             s = scanner.nextLine();
             boolean running;
@@ -183,6 +184,12 @@ public class main {
                                 running = false;
                                 break;
                         }
+                    }
+                    break;
+
+                case ("7"):
+                    for (Customers customer: CustomerDB.getCustomers()) {
+                        System.out.println(customer);
                     }
                     break;
             }
