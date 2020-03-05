@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Business {
 
-    int availableStock(Items item);
+    int checkStock(Items item);
     /**
      * Check the available stock of an item.
      *
