@@ -1,6 +1,7 @@
 package csc1035.project3;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class main {
@@ -148,7 +149,7 @@ public class main {
                 case ("6"):
                     System.out.println("Transaction started");
                     running = true;
-                    ArrayList<Items> scannedItems = new ArrayList<>();
+                    HashMap<Items, Integer> scannedItems = new HashMap<>();
                     while (running) {
                         System.out.println("Options:");
                         System.out.println("[0]Scan new item.");
@@ -170,9 +171,25 @@ public class main {
                                     s = scanner.nextLine();
                                     int id = Integer.parseInt(s);
                                     if (options.contains(id)) {
-                                        scannedItems.add(ItemsDB.idSearch(id));
-                                        System.out.println("Item scanned.");
-                                        System.out.println(scannedItems.size());
+                                        System.out.println("Quantity:");
+                                        s = scanner.nextLine();
+                                        int quantity = Integer.parseInt(s);
+                                        if (s.matches("([0-9]{1,10})") && quantity > 0) {
+                                            Items foundItem = ItemsDB.idSearch(id);
+                                            if(scannedItems.containsKey(foundItem)) {
+                                                scannedItems.put(foundItem, scannedItems.get(foundItem)+ quantity);
+                                            } else {
+                                                scannedItems.put(foundItem, quantity);
+                                            }
+                                            System.out.println("Item scanned.");
+                                            System.out.println("Scanned Items:");
+                                            for(Items item :scannedItems.keySet()) {
+                                                System.out.printf("%s: %s", item.getName(), scannedItems.get(item));
+                                                System.out.println();
+                                            }
+                                        } else {
+                                            System.out.println("Quantity must be an integer and larger than 0.");
+                                        }
                                     } else {
                                         System.out.println("This ID is not an option.");
                                     }
@@ -188,6 +205,7 @@ public class main {
                     break;
 
                 case ("7"):
+                    System.out.println("List of Customers");
                     for (Customers customer: CustomerDB.getCustomers()) {
                         System.out.println(customer);
                     }
