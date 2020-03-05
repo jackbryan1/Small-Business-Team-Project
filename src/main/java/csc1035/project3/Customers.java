@@ -33,6 +33,14 @@ public class Customers {
     }
 
     /**
+     * CID getter
+     * @return cid of Customer
+     */
+    public int getCID(){
+        return this.cid;
+    }
+
+    /**
      * Customer Surname Getter
      * @return - Customer surname
      */
@@ -86,6 +94,6 @@ public class Customers {
      */
     @Override
     public String toString(){
-        return String.format("Surname: %s, Email: %s, phoneExt: %s", getSurname(), getEmail(), getPhoneExt());
+        return String.format("ID: %s: Surname: %s, Email: %s, phoneExt: %s", getCID(), getSurname(), getEmail(), getPhoneExt());
     }
 }
