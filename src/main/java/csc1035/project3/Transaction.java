@@ -1,7 +1,9 @@
 package csc1035.project3;
 
+import java.util.ArrayList;
+
 public class Transaction {
-    public void transaction(Items[] items){
+    public static void transaction(ArrayList<Items> items){
 
     }
 }
