@@ -32,22 +32,22 @@ public class main {
                     System.out.println("Prints receipt");
                     break;
                 case ("2"):
-                    ArrayList<Items> itemArray = new ArrayList<Items>();
-                    boolean boo = true;
-                    while(boo) {
+                    ArrayList<Items> itemArray = new ArrayList<>();
+                    boolean running = true;
+                    while (running) {
                         System.out.println("List of items:");
-                        for(Items item: itemArray) {
+                        for (Items item : itemArray) {
                             System.out.println(item.getName());
                         }
-                        if(itemArray.size() == 0) {
+                        if (itemArray.size() == 0) {
                             System.out.println("No items");
                         }
                         System.out.println("Options");
                         System.out.println("[0]:Add new item");
                         System.out.println("[1]:Push to database");
                         s = scanner.nextLine();
-                        switch(s) {
-                            case("0"):
+                        switch (s) {
+                            case ("0"):
                                 System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
                                 s = scanner.nextLine();
                                 if (s.matches("(.+),(.+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)")) {
@@ -62,11 +62,18 @@ public class main {
 
                                     Items item = new Items(name, category, isPerishable, makeCost, stock, sellPrice);
 
-                        //Add item
-
-                        System.out.println("Item added");
-                    } else {
-                        System.out.println("Wrong format.");
+                                    itemArray.add(item);
+                                    System.out.println("Item added.");
+                                    break;
+                                } else {
+                                    System.out.println("Wrong format.");
+                                    break;
+                                }
+                            case ("1"):
+                                ItemsDB.create(itemArray);
+                                running = false;
+                                break;
+                        }
                     }
                     break;
                 case ("3"):
@@ -89,11 +96,11 @@ public class main {
                 case ("5"):
                     System.out.println("Name of item:");
                     s = scanner.nextLine();
-                    ArrayList options = ItemsDB.readSearch(s);
+                    ArrayList<Integer> options = ItemsDB.readSearch(s);
                     if (!options.isEmpty()) {
                         System.out.println("ID Options:");
-                        for (Object o : options) {
-                            System.out.println(o);
+                        for (Integer option : options) {
+                            System.out.println(option);
                         }
                         s = scanner.nextLine();
                         int id = Integer.parseInt(s);
@@ -106,7 +113,45 @@ public class main {
                     }
                     break;
                 case ("6"):
-                    System.out.println("Starts transaction");
+                    System.out.println("Transaction started");
+                    running = true;
+                    ArrayList<Items> scannedItems = new ArrayList<>();
+                    while (running) {
+                        System.out.println("Options:");
+                        System.out.println("[0]Scan new item.");
+                        System.out.println("[1]Complete transaction.");
+                        s = scanner.nextLine();
+                        switch (s) {
+                            default:
+                                System.out.println("No such option.");
+                                break;
+                            case("0"):
+                                System.out.println("Name of item:");
+                                s = scanner.nextLine();
+                                options = ItemsDB.readSearch(s);
+                                if (!options.isEmpty()) {
+                                    System.out.println("ID Options:");
+                                    for (Object o : options) {
+                                        System.out.println(o);
+                                    }
+                                    s = scanner.nextLine();
+                                    int id = Integer.parseInt(s);
+                                    if (options.contains(id)) {
+                                        scannedItems.add(ItemsDB.idSearch(id));
+                                        System.out.println("Item scanned.");
+                                        System.out.println(scannedItems.size());
+                                    } else {
+                                        System.out.println("This ID is not an option.");
+                                    }
+                                }
+                                break;
+                            case("1"):
+                                Transaction.transaction(scannedItems);
+                                System.out.println("Transaction completed.");
+                                running = false;
+                                break;
+                        }
+                    }
                     break;
             }
         }
