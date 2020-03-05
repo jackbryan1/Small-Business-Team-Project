@@ -21,6 +21,8 @@ public class main {
                             "[6]:Transaction"
                     );
             s = scanner.nextLine();
+            boolean running;
+            ArrayList<Integer> options = new ArrayList<>();
             switch(s) {
                 default:
                     System.out.println("No such command");
@@ -33,7 +35,7 @@ public class main {
                     break;
                 case ("2"):
                     ArrayList<Items> itemArray = new ArrayList<>();
-                    boolean running = true;
+                    running = true;
                     while (running) {
                         System.out.println("List of items:");
                         for (Items item : itemArray) {
@@ -47,22 +49,13 @@ public class main {
                         System.out.println("[1]:Push to database");
                         s = scanner.nextLine();
                         switch (s) {
+                            default:
+                                System.out.println("No such option.");
                             case ("0"):
                                 System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
                                 s = scanner.nextLine();
                                 if (s.matches("(.+),(.+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)")) {
-                                    String[] fields = s.split(",");
-
-                                    String name = fields[0];
-                                    String category = fields[1];
-                                    boolean isPerishable = Boolean.parseBoolean(fields[2]);
-                                    double makeCost = Double.parseDouble(fields[3]);
-                                    int stock = Integer.parseInt(fields[4]);
-                                    double sellPrice = Double.parseDouble(fields[5]);
-
-                                    Items item = new Items(name, category, isPerishable, makeCost, stock, sellPrice);
-
-                                    itemArray.add(item);
+                                    itemArray.add(ItemArray.stringLoader(s));
                                     System.out.println("Item added.");
                                     break;
                                 } else {
@@ -71,6 +64,7 @@ public class main {
                                 }
                             case ("1"):
                                 ItemsDB.create(itemArray);
+                                System.out.println("Item added to database.");
                                 running = false;
                                 break;
                         }
@@ -87,7 +81,25 @@ public class main {
                     s = scanner.nextLine();
                     if (s.matches("(.+),([0-9]{1,10})")) {
                         String[] array = s.split(",");
-                        //Update stock of item named array[0] to array[1]
+                        String name = array[0];
+                        int newStock = Integer.parseInt(array[1]);
+
+                        options = ItemsDB.readSearch(name);
+                        if (!options.isEmpty()) {
+                            System.out.println("ID Options:");
+                            for (Integer option : options) {
+                                System.out.println(option);
+                            }
+                            s = scanner.nextLine();
+                            int id = Integer.parseInt(s);
+                            if (options.contains(id)) {
+                                Items i = ItemsDB.idSearch(id);
+                                i.setStock(newStock);
+                                ItemsDB.update(i);
+                            } else {
+                                System.out.println("This ID is not an option.");
+                            }
+                        }
                         System.out.println("Stock updated.");
                     } else {
                         System.out.println("Wrong format.");
@@ -96,7 +108,7 @@ public class main {
                 case ("5"):
                     System.out.println("Name of item:");
                     s = scanner.nextLine();
-                    ArrayList<Integer> options = ItemsDB.readSearch(s);
+                    options = ItemsDB.readSearch(s);
                     if (!options.isEmpty()) {
                         System.out.println("ID Options:");
                         for (Integer option : options) {
@@ -131,8 +143,8 @@ public class main {
                                 options = ItemsDB.readSearch(s);
                                 if (!options.isEmpty()) {
                                     System.out.println("ID Options:");
-                                    for (Object o : options) {
-                                        System.out.println(o);
+                                    for (Integer id : options) {
+                                        System.out.println(id);
                                     }
                                     s = scanner.nextLine();
                                     int id = Integer.parseInt(s);
@@ -146,7 +158,7 @@ public class main {
                                 }
                                 break;
                             case("1"):
-                                Transaction.transaction(scannedItems);
+                                //Transaction.transaction(scannedItems);
                                 System.out.println("Transaction completed.");
                                 running = false;
                                 break;

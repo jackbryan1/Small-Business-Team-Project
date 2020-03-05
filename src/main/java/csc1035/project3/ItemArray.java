@@ -26,4 +26,9 @@ public class ItemArray{
         return null;
     }
 
+    public static Items stringLoader(String string) {
+        String[] temp = string.split(",");
+        return new Items(temp[0], temp[1], Boolean.parseBoolean(temp[2]), Double.parseDouble(temp[3]), Integer.parseInt(temp[4]), Double.parseDouble(temp[5]));
+    }
+
 }
