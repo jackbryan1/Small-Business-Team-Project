@@ -22,17 +22,20 @@ public class main {
                     );
             s = scanner.nextLine();
             boolean running;
-            ArrayList<Integer> options = new ArrayList<>();
+            ArrayList<Integer> options;
             switch(s) {
                 default:
                     System.out.println("No such command");
                     break;
+
                 case ("0"):
                     System.out.println("Program closed");
                     return;
+
                 case ("1"):
                     System.out.println("Prints receipt");
                     break;
+
                 case ("2"):
                     ArrayList<Items> itemArray = new ArrayList<>();
                     running = true;
@@ -70,12 +73,27 @@ public class main {
                         }
                     }
                     break;
+
                 case ("3"):
                     System.out.println("Name of Item:");
                     s = scanner.nextLine();
-                    //Read stock of item named s
-                    //System.out.println("Stock: stock");
+                    options = ItemsDB.readSearch(s);
+                    if (!options.isEmpty()) {
+                        System.out.println("ID Options:");
+                        for (Integer option : options) {
+                            System.out.println(option);
+                        }
+                        s = scanner.nextLine();
+                        int id = Integer.parseInt(s);
+                        if (options.contains(id)) {
+                            System.out.printf("Stock: %s", ItemsDB.idSearch(id).getStock());
+                            System.out.println();
+                        } else {
+                            System.out.println("This ID is not an option.");
+                        }
+                    }
                     break;
+
                 case ("4"):
                     System.out.println("Item to update:(name,stock)");
                     s = scanner.nextLine();
@@ -105,6 +123,7 @@ public class main {
                         System.out.println("Wrong format.");
                     }
                     break;
+
                 case ("5"):
                     System.out.println("Name of item:");
                     s = scanner.nextLine();
@@ -124,6 +143,7 @@ public class main {
                         }
                     }
                     break;
+
                 case ("6"):
                     System.out.println("Transaction started");
                     running = true;
