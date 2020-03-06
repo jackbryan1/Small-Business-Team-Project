@@ -199,7 +199,7 @@ public class main {
                                 }
                                 break;
                             case("1"):
-                                //Transaction.transaction(scannedItems);
+                                Transaction.transaction(scannedItems);
                                 System.out.println("Transaction completed.");
                                 running = false;
                                 break;
