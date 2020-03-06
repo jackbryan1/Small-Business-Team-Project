@@ -4,7 +4,11 @@ import java.util.HashMap;
 
 public class Transaction {
 
-
+    /**
+     *
+     * @param items A hashmap of items that are involved in the transaction as well as the quantity
+     * @return Returns the total price of the items in the transaction
+     */
     public static float transaction(HashMap<Items, Integer> items){
         float price = 0;
         for( Items item: items.keySet()){
@@ -15,6 +19,12 @@ public class Transaction {
         return price;
     }
 
+    /**
+     *
+     * @param items A hashmap of items that are involved in the transaction as well as the quantity
+     * @param price The total price of the items in the transaction
+     * @param change The change that is to be returned to the customer
+     */
     public static void receipt(HashMap<Items, Integer> items, float price, float change){
         System.out.format("+---------------------------------------------+" + System.lineSeparator());
         System.out.format("|Items Purchased:                             |" + System.lineSeparator());
