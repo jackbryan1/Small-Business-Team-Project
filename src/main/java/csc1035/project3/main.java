@@ -81,17 +81,18 @@ public class main {
                     s = scanner.nextLine();
                     options = ItemsDB.readSearch(s);
                     if (!options.isEmpty()) {
-                        System.out.println("ID Options:");
-                        for (Integer option : options) {
-                            System.out.println(option);
-                        }
+                        System.out.println("Choose an ID:");
                         s = scanner.nextLine();
-                        int id = Integer.parseInt(s);
-                        if (options.contains(id)) {
-                            System.out.printf("Stock: %s", ItemsDB.idSearch(id).getStock());
-                            System.out.println();
+                        if (s.matches("([0-9]{1,10})")) {
+                            int id = Integer.parseInt(s);
+                            if (options.contains(id)) {
+                                System.out.printf("Stock: %s", ItemsDB.idSearch(id).getStock());
+                                System.out.println();
+                            } else {
+                                System.out.println("This ID is not an option.");
+                            }
                         } else {
-                            System.out.println("This ID is not an option.");
+                            System.out.println("ID must be an integer.");
                         }
                     }
                     break;
@@ -103,24 +104,24 @@ public class main {
                         String[] array = s.split(",");
                         String name = array[0];
                         int newStock = Integer.parseInt(array[1]);
-
                         options = ItemsDB.readSearch(name);
                         if (!options.isEmpty()) {
-                            System.out.println("ID Options:");
-                            for (Integer option : options) {
-                                System.out.println(option);
-                            }
+                            System.out.println("Choose an ID:");
                             s = scanner.nextLine();
-                            int id = Integer.parseInt(s);
-                            if (options.contains(id)) {
-                                Items i = ItemsDB.idSearch(id);
-                                i.setStock(newStock);
-                                ItemsDB.update(i);
+                            if (s.matches("([0-9]{1,10})")) {
+                                int id = Integer.parseInt(s);
+                                if (options.contains(id)) {
+                                    Items i = ItemsDB.idSearch(id);
+                                    i.setStock(newStock);
+                                    ItemsDB.update(i);
+                                    System.out.println("Stock updated.");
+                                } else {
+                                    System.out.println("This ID is not an option.");
+                                }
                             } else {
-                                System.out.println("This ID is not an option.");
+                                System.out.println("ID must be an integer.");
                             }
                         }
-                        System.out.println("Stock updated.");
                     } else {
                         System.out.println("Wrong format.");
                     }
@@ -131,17 +132,18 @@ public class main {
                     s = scanner.nextLine();
                     options = ItemsDB.readSearch(s);
                     if (!options.isEmpty()) {
-                        System.out.println("ID Options:");
-                        for (Integer option : options) {
-                            System.out.println(option);
-                        }
+                        System.out.println("Choose an ID:");
                         s = scanner.nextLine();
-                        int id = Integer.parseInt(s);
-                        if (options.contains(id)) {
-                            ItemsDB.delete(ItemsDB.idSearch(id));
-                            System.out.println("Item deleted");
+                        if (s.matches("([0-9]{1,10})")) {
+                            int id = Integer.parseInt(s);
+                            if (options.contains(id)) {
+                                ItemsDB.delete(ItemsDB.idSearch(id));
+                                System.out.println("Item deleted");
+                            } else {
+                                System.out.println("This ID is not an option.");
+                            }
                         } else {
-                            System.out.println("This ID is not an option.");
+                            System.out.println("ID must be an integer.");
                         }
                     }
                     break;
@@ -164,30 +166,35 @@ public class main {
                                 s = scanner.nextLine();
                                 options = ItemsDB.readSearch(s);
                                 if (!options.isEmpty()) {
-                                    System.out.println("ID Options:");
-                                    for (Integer id : options) {
-                                        System.out.println(id);
-                                    }
+                                    System.out.println("Choose an ID:");
                                     s = scanner.nextLine();
-                                    int id = Integer.parseInt(s);
-                                    if (options.contains(id)) {
-                                        System.out.println("Quantity:");
-                                        s = scanner.nextLine();
-                                        int quantity = Integer.parseInt(s);
-                                        if (s.matches("([0-9]{1,10})") && quantity > 0) {
-                                            Items foundItem = ItemsDB.idSearch(id);
-                                            scannedItems.put(foundItem, quantity);
-                                            System.out.println("Item scanned.");
-                                            System.out.println("Scanned Items:");
-                                            for(Items item :scannedItems.keySet()) {
-                                                System.out.printf("%s: %s", item.getName(), scannedItems.get(item));
-                                                System.out.println();
+                                    if (s.matches("([0-9]{1,10})")) {
+                                        int id = Integer.parseInt(s);
+                                        if (options.contains(id)) {
+                                            System.out.println("Quantity:");
+                                            s = scanner.nextLine();
+                                            if (s.matches("([0-9]{1,10})")) {
+                                                int quantity = Integer.parseInt(s);
+                                                if (quantity > 0) {
+                                                    Items foundItem = ItemsDB.idSearch(id);
+                                                    scannedItems.put(foundItem, quantity);
+                                                    System.out.println("Item scanned.");
+                                                    System.out.println("Scanned Items:");
+                                                    for (Items item : scannedItems.keySet()) {
+                                                        System.out.printf("%s: %s", item.getName(), scannedItems.get(item));
+                                                        System.out.println();
+                                                    }
+                                                } else {
+                                                    System.out.println("Quantity must be larger than 0.");
+                                                }
+                                            } else {
+                                                System.out.println("Quantity must be an integer.");
                                             }
                                         } else {
-                                            System.out.println("Quantity must be an integer and larger than 0.");
+                                            System.out.println("This ID is not an option.");
                                         }
                                     } else {
-                                        System.out.println("This ID is not an option.");
+                                        System.out.println("ID must be an integer.");
                                     }
                                 }
                                 break;
