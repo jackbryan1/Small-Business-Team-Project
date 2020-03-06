@@ -176,11 +176,7 @@ public class main {
                                         int quantity = Integer.parseInt(s);
                                         if (s.matches("([0-9]{1,10})") && quantity > 0) {
                                             Items foundItem = ItemsDB.idSearch(id);
-                                            if(scannedItems.containsKey(foundItem)) {
-                                                scannedItems.put(foundItem, scannedItems.get(foundItem)+ quantity);
-                                            } else {
-                                                scannedItems.put(foundItem, quantity);
-                                            }
+                                            scannedItems.put(foundItem, quantity);
                                             System.out.println("Item scanned.");
                                             System.out.println("Scanned Items:");
                                             for(Items item :scannedItems.keySet()) {
