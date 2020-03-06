@@ -14,13 +14,12 @@ public class main {
         while(true){
             System.out.println("Next Command");
             System.out.println("[0]:End \n" +
-                            "[1]:Print Receipt \n" +
-                            "[2]:Add New Item \n" +
-                            "[3]:Check Stock \n" +
-                            "[4]:Update Stock \n" +
-                            "[5]:Delete Item \n" +
-                            "[6]:Transaction \n" +
-                            "[7]:List of Customers"
+                            "[1]:Add New Item \n" +
+                            "[2]:Check Stock \n" +
+                            "[3]:Update Stock \n" +
+                            "[4]:Delete Item \n" +
+                            "[5]:Transaction \n" +
+                            "[6]:List of Customers"
                     );
             s = scanner.nextLine();
             boolean running;
@@ -35,10 +34,6 @@ public class main {
                     return;
 
                 case ("1"):
-                    System.out.println("Prints receipt");
-                    break;
-
-                case ("2"):
                     ArrayList<Items> itemArray = new ArrayList<>();
                     running = true;
                     while (running) {
@@ -76,7 +71,7 @@ public class main {
                     }
                     break;
 
-                case ("3"):
+                case ("2"):
                     System.out.println("Name of Item:");
                     s = scanner.nextLine();
                     options = ItemsDB.readSearch(s);
@@ -97,7 +92,7 @@ public class main {
                     }
                     break;
 
-                case ("4"):
+                case ("3"):
                     System.out.println("Item to update:(name,stock)");
                     s = scanner.nextLine();
                     if (s.matches("(.+),([0-9]{1,10})")) {
@@ -127,7 +122,7 @@ public class main {
                     }
                     break;
 
-                case ("5"):
+                case ("4"):
                     System.out.println("Name of item:");
                     s = scanner.nextLine();
                     options = ItemsDB.readSearch(s);
@@ -148,7 +143,7 @@ public class main {
                     }
                     break;
 
-                case ("6"):
+                case ("5"):
                     System.out.println("Transaction started");
                     running = true;
                     HashMap<Items, Integer> scannedItems = new HashMap<>();
@@ -199,15 +194,29 @@ public class main {
                                 }
                                 break;
                             case("1"):
-                                Transaction.transaction(scannedItems);
-                                System.out.println("Transaction completed.");
-                                running = false;
-                                break;
+                                System.out.println("Money received:");
+                                s = scanner.nextLine();
+                                float moneyReceived = Float.parseFloat(s);
+                                float totalPrice = Transaction.transaction(scannedItems);
+                                if(moneyReceived > totalPrice) {
+                                    System.out.println("Receipt?(Y/N)");
+                                    s = scanner.nextLine();
+                                    if (s.equals("Y")) {
+                                        float change = moneyReceived - totalPrice;
+                                        //Transaction.receipt(scannedItems, totalPrice, change)
+                                    }
+                                    System.out.println("Transaction completed.");
+                                    running = false;
+                                    break;
+                                } else {
+                                    System.out.println("Not enough money.");
+                                    break;
+                                }
                         }
                     }
                     break;
 
-                case ("7"):
+                case ("6"):
                     System.out.println("List of Customers");
                     for (Customers customer: CustomerDB.getCustomers()) {
                         System.out.println(customer);
