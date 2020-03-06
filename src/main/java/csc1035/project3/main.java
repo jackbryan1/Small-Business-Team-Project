@@ -24,13 +24,13 @@ public class main {
             s = scanner.nextLine();
             boolean running;
             ArrayList<Integer> options;
-            switch(s) {
+            switch (s) {
                 default:
-                    System.out.println("No such command");
+                    System.out.println("No such command.");
                     break;
 
                 case ("0"):
-                    System.out.println("Program closed");
+                    System.out.println("Program closed.");
                     return;
 
                 case ("1"):
@@ -47,6 +47,7 @@ public class main {
                         System.out.println("Options");
                         System.out.println("[0]:Add new item");
                         System.out.println("[1]:Push to database");
+                        System.out.println("[2]:Exit");
                         s = scanner.nextLine();
                         switch (s) {
                             default:
@@ -65,6 +66,9 @@ public class main {
                             case ("1"):
                                 ItemsDB.create(itemArray);
                                 System.out.println("Item added to database.");
+                                running = false;
+                                break;
+                            case ("2"):
                                 running = false;
                                 break;
                         }
@@ -149,14 +153,15 @@ public class main {
                     HashMap<Items, Integer> scannedItems = new HashMap<>();
                     while (running) {
                         System.out.println("Options:");
-                        System.out.println("[0]Scan new item.");
-                        System.out.println("[1]Complete transaction.");
+                        System.out.println("[0]Scan new item");
+                        System.out.println("[1]Complete transaction");
+                        System.out.println("[2]Exit");
                         s = scanner.nextLine();
                         switch (s) {
                             default:
                                 System.out.println("No such option.");
                                 break;
-                            case("0"):
+                            case ("0"):
                                 System.out.println("Name of item:");
                                 s = scanner.nextLine();
                                 options = ItemsDB.readSearch(s);
@@ -193,7 +198,7 @@ public class main {
                                     }
                                 }
                                 break;
-                            case("1"):
+                            case ("1"):
                                 System.out.println("Money received:");
                                 s = scanner.nextLine();
                                 float moneyReceived = Float.parseFloat(s);
@@ -203,7 +208,7 @@ public class main {
                                     s = scanner.nextLine();
                                     if (s.equals("Y")) {
                                         float change = moneyReceived - totalPrice;
-                                        //Transaction.receipt(scannedItems, totalPrice, change)
+                                        Transaction.receipt(scannedItems, totalPrice, change);
                                     }
                                     System.out.println("Transaction completed.");
                                     running = false;
@@ -212,6 +217,9 @@ public class main {
                                     System.out.println("Not enough money.");
                                     break;
                                 }
+                            case ("2"):
+                                running = false;
+                                break;
                         }
                     }
                     break;
