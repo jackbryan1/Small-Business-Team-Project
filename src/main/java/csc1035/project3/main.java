@@ -82,7 +82,7 @@ public class main {
                     if (!options.isEmpty()) {
                         System.out.println("Choose an ID:");
                         s = scanner.nextLine();
-                        if (s.matches("([0-9]{1,10})")) {
+                        try {
                             int id = Integer.parseInt(s);
                             if (options.contains(id)) {
                                 System.out.printf("Stock: %s", ItemsDB.idSearch(id).getStock());
@@ -90,7 +90,7 @@ public class main {
                             } else {
                                 System.out.println("This ID is not an option.");
                             }
-                        } else {
+                        } catch (Exception e) {
                             System.out.println("ID must be an integer.");
                         }
                     }
@@ -107,7 +107,7 @@ public class main {
                         if (!options.isEmpty()) {
                             System.out.println("Choose an ID:");
                             s = scanner.nextLine();
-                            if (s.matches("([0-9]{1,10})")) {
+                            try {
                                 int id = Integer.parseInt(s);
                                 if (options.contains(id)) {
                                     Items i = ItemsDB.idSearch(id);
@@ -117,7 +117,7 @@ public class main {
                                 } else {
                                     System.out.println("This ID is not an option.");
                                 }
-                            } else {
+                            } catch (Exception e) {
                                 System.out.println("ID must be an integer.");
                             }
                         }
@@ -133,7 +133,7 @@ public class main {
                     if (!options.isEmpty()) {
                         System.out.println("Choose an ID:");
                         s = scanner.nextLine();
-                        if (s.matches("([0-9]{1,10})")) {
+                        try {
                             int id = Integer.parseInt(s);
                             if (options.contains(id)) {
                                 ItemsDB.delete(ItemsDB.idSearch(id));
@@ -141,7 +141,7 @@ public class main {
                             } else {
                                 System.out.println("This ID is not an option.");
                             }
-                        } else {
+                        } catch (Exception e) {
                             System.out.println("ID must be an integer.");
                         }
                     }
@@ -168,12 +168,12 @@ public class main {
                                 if (!options.isEmpty()) {
                                     System.out.println("Choose an ID:");
                                     s = scanner.nextLine();
-                                    if (s.matches("([0-9]{1,10})")) {
+                                    try {
                                         int id = Integer.parseInt(s);
                                         if (options.contains(id)) {
                                             System.out.println("Quantity:");
                                             s = scanner.nextLine();
-                                            if (s.matches("([0-9]{1,10})")) {
+                                            try {
                                                 int quantity = Integer.parseInt(s);
                                                 if (quantity > 0) {
                                                     Items foundItem = ItemsDB.idSearch(id);
@@ -187,35 +187,39 @@ public class main {
                                                 } else {
                                                     System.out.println("Quantity must be larger than 0.");
                                                 }
-                                            } else {
+                                            } catch (Exception e) {
                                                 System.out.println("Quantity must be an integer.");
                                             }
                                         } else {
                                             System.out.println("This ID is not an option.");
                                         }
-                                    } else {
+                                    } catch (Exception e) {
                                         System.out.println("ID must be an integer.");
                                     }
                                 }
                                 break;
                             case ("1"):
-                                System.out.println("Money received:");
+                                System.out.println("Payment received:");
                                 s = scanner.nextLine();
-                                float moneyReceived = Float.parseFloat(s);
-                                float totalPrice = Transaction.transaction(scannedItems);
-                                if(moneyReceived > totalPrice) {
-                                    System.out.println("Receipt?(Y/N)");
-                                    s = scanner.nextLine();
-                                    if (s.equals("Y")) {
-                                        float change = moneyReceived - totalPrice;
-                                        Transaction.receipt(scannedItems, totalPrice, change);
+                                try {
+                                    float moneyReceived = Float.parseFloat(s);
+                                    float totalPrice = Transaction.transaction(scannedItems);
+                                    if (moneyReceived > totalPrice) {
+                                        System.out.println("Receipt?(Y/N)");
+                                        s = scanner.nextLine();
+                                        if (s.equals("Y")) {
+                                            float change = moneyReceived - totalPrice;
+                                            Transaction.receipt(scannedItems, totalPrice, change);
+                                        }
+                                        System.out.println("Transaction completed.");
+                                        running = false;
+                                        break;
+                                    } else {
+                                        System.out.println("Not enough payment.");
+                                        break;
                                     }
-                                    System.out.println("Transaction completed.");
-                                    running = false;
-                                    break;
-                                } else {
-                                    System.out.println("Not enough money.");
-                                    break;
+                                } catch (Exception e) {
+                                    System.out.println("Payment must be of numeric value.");
                                 }
                             case ("2"):
                                 running = false;
