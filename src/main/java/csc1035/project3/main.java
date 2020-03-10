@@ -22,7 +22,7 @@ public class main {
             System.out.println("[6]:Exit");
             s = scanner.nextLine();
             boolean running;
-            ArrayList<Integer> options;
+            ArrayList<Integer> idOptions;
             switch (s) {
                 default:
                     System.out.println("No such command.");
@@ -37,7 +37,7 @@ public class main {
                             System.out.println(item.getName());
                         }
                         if (itemArray.size() == 0) {
-                            System.out.println("No items");
+                            System.out.println("No items.");
                         }
                         System.out.println("Options");
                         System.out.println("[0]:Add new item");
@@ -60,7 +60,7 @@ public class main {
                                 }
                             case ("1"):
                                 ItemsDB.create(itemArray);
-                                System.out.println("Item added to database.");
+                                System.out.println("Items added to database.");
                                 running = false;
                                 break;
                             case ("2"):
@@ -73,13 +73,13 @@ public class main {
                 case ("1"):
                     System.out.println("Name of Item:");
                     s = scanner.nextLine();
-                    options = ItemsDB.readSearch(s);
-                    if (!options.isEmpty()) {
+                    idOptions = ItemsDB.readSearch(s);
+                    if (!idOptions.isEmpty()) {
                         System.out.println("Choose an ID:");
                         s = scanner.nextLine();
                         try {
                             int id = Integer.parseInt(s);
-                            if (options.contains(id)) {
+                            if (idOptions.contains(id)) {
                                 System.out.printf("Stock: %s", ItemsDB.idSearch(id).getStock());
                                 System.out.println();
                             } else {
@@ -98,13 +98,13 @@ public class main {
                         String[] array = s.split(",");
                         String name = array[0];
                         int newStock = Integer.parseInt(array[1]);
-                        options = ItemsDB.readSearch(name);
-                        if (!options.isEmpty()) {
+                        idOptions = ItemsDB.readSearch(name);
+                        if (!idOptions.isEmpty()) {
                             System.out.println("Choose an ID:");
                             s = scanner.nextLine();
                             try {
                                 int id = Integer.parseInt(s);
-                                if (options.contains(id)) {
+                                if (idOptions.contains(id)) {
                                     Items i = ItemsDB.idSearch(id);
                                     i.setStock(newStock);
                                     ItemsDB.update(i);
@@ -124,13 +124,13 @@ public class main {
                 case ("3"):
                     System.out.println("Name of item:");
                     s = scanner.nextLine();
-                    options = ItemsDB.readSearch(s);
-                    if (!options.isEmpty()) {
+                    idOptions = ItemsDB.readSearch(s);
+                    if (!idOptions.isEmpty()) {
                         System.out.println("Choose an ID:");
                         s = scanner.nextLine();
                         try {
                             int id = Integer.parseInt(s);
-                            if (options.contains(id)) {
+                            if (idOptions.contains(id)) {
                                 ItemsDB.delete(ItemsDB.idSearch(id));
                                 System.out.println("Item deleted.");
                             } else {
@@ -158,13 +158,13 @@ public class main {
                             case ("0"):
                                 System.out.println("Name of item:");
                                 s = scanner.nextLine();
-                                options = ItemsDB.readSearch(s);
-                                if (!options.isEmpty()) {
+                                idOptions = ItemsDB.readSearch(s);
+                                if (!idOptions.isEmpty()) {
                                     System.out.println("Choose an ID:");
                                     s = scanner.nextLine();
                                     try {
                                         int id = Integer.parseInt(s);
-                                        if (options.contains(id)) {
+                                        if (idOptions.contains(id)) {
                                             System.out.println("Quantity:");
                                             s = scanner.nextLine();
                                             try {
@@ -205,6 +205,9 @@ public class main {
                                             float change = moneyReceived - totalPrice;
                                             Transaction.receipt(scannedItems, totalPrice, change);
                                         }
+                                        if (!(s.toUpperCase().equals("N") || s.toUpperCase().equals("Y"))) {
+                                            System.out.println("This option is invalid, receipt will not be printed.");
+                                        }
                                         System.out.println("Transaction completed.");
                                         running = false;
                                         break;
@@ -223,7 +226,6 @@ public class main {
                     break;
 
                 case ("5"):
-                    System.out.println("List of Customers");
                     for (Customers customer: CustomerDB.getCustomers()) {
                         System.out.println(customer);
                     }
