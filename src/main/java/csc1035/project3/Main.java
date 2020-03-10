@@ -27,7 +27,7 @@ public class Main {
             System.out.println("[2]:Update Stock");
             System.out.println("[3]:Delete Item");
             System.out.println("[4]:Transaction");
-            System.out.println("[5]:List of Customers");
+            System.out.println("[5]:Interact with Customers Table in Database");
             System.out.println("[6]:Exit");
             s = scanner.nextLine();
             boolean running;
@@ -256,9 +256,7 @@ public class Main {
                     break;
 
                 case ("5"):
-                    for (Customers customer: CustomerDB.getCustomers()) {
-                        System.out.println(customer);
-                    }
+                    CustomerCLI custCLI = new CustomerCLI();
                     break;
 
                 case ("6")://Exit
