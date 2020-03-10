@@ -7,9 +7,10 @@ import java.util.Scanner;
 /**
  * Contains the command line interface for running the EPOS program.
  */
-public class main {
+public class Main {
     /**
-     * Provide command line interface to communicate with the EPOS program.
+     * Provides the command line interface to communicate with the EPOS program by taking in a user input of a command's
+     * index to control which command to be executed.
      *
      * @param args command-line arguments
      */
@@ -36,10 +37,11 @@ public class main {
                     System.out.println("No such command.");
                     break;
 
-                case ("0"):
+                case ("0")://Add New Item
                     ArrayList<Items> itemArray = new ArrayList<>();
                     running = true;
                     while (running) {
+                        //Shows the list of items to be added to the database.
                         System.out.println("List of items:");
                         for (Items item : itemArray) {
                             System.out.println(item.getName());
@@ -58,7 +60,10 @@ public class main {
                             case ("0"):
                                 System.out.println("Item to add:(name,category,isPerishable,makeCost,stock,sellPrice)");
                                 s = scanner.nextLine();
-                                if (s.matches("(.+),(.+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)")) {
+                                if (s.matches(
+                                        //Checks if each field of the item has the correct type.
+                                        "(.+),(.+),(true|false),([0-9]*\\.?[0-9]+),([0-9]{1,10}),([0-9]*\\.?[0-9]+)"
+                                )) {
                                     itemArray.add(ItemArray.stringLoader(s));
                                     System.out.println("Item added.");
                                     break;
@@ -78,15 +83,18 @@ public class main {
                     }
                     break;
 
-                case ("1"):
+                case ("1")://Check stock
                     System.out.println("Name of Item:");
                     s = scanner.nextLine();
+                    //Searches for a list of items that has the matching name.
                     idOptions = ItemsDB.readSearch(s);
                     if (!idOptions.isEmpty()) {
                         System.out.println("Choose an ID:");
                         s = scanner.nextLine();
+                        //Catches exception if user did not enter a integer for id searching.
                         try {
                             int id = Integer.parseInt(s);
+                            //Checks if the id input is one of the search results.
                             if (idOptions.contains(id)) {
                                 System.out.printf("Stock: %s", ItemsDB.idSearch(id).getStock());
                                 System.out.println();
@@ -99,19 +107,22 @@ public class main {
                     }
                     break;
 
-                case ("2"):
+                case ("2")://Update stock
                     System.out.println("Item to update:(name,stock)");
                     s = scanner.nextLine();
                     if (s.matches("(.+),([0-9]{1,10})")) {
                         String[] array = s.split(",");
                         String name = array[0];
                         int newStock = Integer.parseInt(array[1]);
+                        //Searches for a list of items that has the matching name.
                         idOptions = ItemsDB.readSearch(name);
                         if (!idOptions.isEmpty()) {
                             System.out.println("Choose an ID:");
                             s = scanner.nextLine();
+                            //Catches exception if user did not enter a integer for id searching.
                             try {
                                 int id = Integer.parseInt(s);
+                                //Checks if the id input is one of the search results.
                                 if (idOptions.contains(id)) {
                                     Items i = ItemsDB.idSearch(id);
                                     i.setStock(newStock);
@@ -129,15 +140,18 @@ public class main {
                     }
                     break;
 
-                case ("3"):
+                case ("3")://Delete Item
                     System.out.println("Name of item:");
                     s = scanner.nextLine();
+                    //Searches for a list of items that has the matching name.
                     idOptions = ItemsDB.readSearch(s);
                     if (!idOptions.isEmpty()) {
                         System.out.println("Choose an ID:");
                         s = scanner.nextLine();
+                        //Catches exception if user did not enter a integer for id searching.
                         try {
                             int id = Integer.parseInt(s);
+                            //Checks if the id input is one of the search results.
                             if (idOptions.contains(id)) {
                                 ItemsDB.delete(ItemsDB.idSearch(id));
                                 System.out.println("Item deleted.");
@@ -150,7 +164,7 @@ public class main {
                     }
                     break;
 
-                case ("4"):
+                case ("4")://Transaction
                     running = true;
                     HashMap<Items, Integer> scannedItems = new HashMap<>();
                     while (running) {
@@ -166,15 +180,19 @@ public class main {
                             case ("0"):
                                 System.out.println("Name of item:");
                                 s = scanner.nextLine();
+                                //Searches for a list of items that has the matching name.
                                 idOptions = ItemsDB.readSearch(s);
                                 if (!idOptions.isEmpty()) {
                                     System.out.println("Choose an ID:");
                                     s = scanner.nextLine();
+                                    //Catches exception if user did not enter a integer for id searching.
                                     try {
                                         int id = Integer.parseInt(s);
+                                        //Checks if the id input is one of the search results.
                                         if (idOptions.contains(id)) {
                                             System.out.println("Quantity:");
                                             s = scanner.nextLine();
+                                            //Catches exception if user did not enter a integer for the quantity.
                                             try {
                                                 int quantity = Integer.parseInt(s);
                                                 if (quantity > 0) {
@@ -183,7 +201,8 @@ public class main {
                                                     System.out.println("Item scanned.");
                                                     System.out.println("Scanned Items:");
                                                     for (Items item : scannedItems.keySet()) {
-                                                        System.out.printf("%s: %s", item.getName(), scannedItems.get(item));
+                                                        System.out.printf("%s: %s", item.getName(),
+                                                                            scannedItems.get(item));
                                                         System.out.println();
                                                     }
                                                 } else {
@@ -203,9 +222,11 @@ public class main {
                             case ("1"):
                                 System.out.println("Payment received:");
                                 s = scanner.nextLine();
+                                //Catches exception when user did not enter a number that can be casted into a float.
                                 try {
                                     float moneyReceived = Float.parseFloat(s);
                                     float totalPrice = Transaction.transaction(scannedItems);
+                                    //Checks if the money received is enough to pay for all the items.
                                     if (moneyReceived >= totalPrice) {
                                         System.out.println("Receipt?(Y/N)");
                                         s = scanner.nextLine();
@@ -213,6 +234,7 @@ public class main {
                                             float change = moneyReceived - totalPrice;
                                             Transaction.receipt(scannedItems, totalPrice, change);
                                         }
+                                        //Does not print receipt if user input an option other than Y or N.
                                         if (!(s.toUpperCase().equals("N") || s.toUpperCase().equals("Y"))) {
                                             System.out.println("This option is invalid, receipt will not be printed.");
                                         }
@@ -239,7 +261,7 @@ public class main {
                     }
                     break;
 
-                case ("6"):
+                case ("6")://Exit
                     System.out.println("Program closed.");
                     return;
             }
