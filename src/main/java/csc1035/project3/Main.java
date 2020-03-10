@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Contains the command line interface for running the EPOS program.
  */
-public class main {
+public class Main {
     /**
      * Provides the command line interface to communicate with the EPOS program by taking in a user input of a command's
      * index to control which command to be executed.
