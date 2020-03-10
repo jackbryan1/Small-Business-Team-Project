@@ -12,7 +12,7 @@ import java.util.Scanner;
  *  Create - insertCustomer, insertCustomerList
  *  Read - getCustomers, getCIDBySurname, getCIDByEmail, getCIDByPhoneExt
  *  Update - updateEmail, updatePhoneExt, replaceCustomer
- *  Delete - deleteCustomer, deleteCustomerUsingCID
+ *  Delete - deleteCustomer, deleteCustomerUsingCID, deleteAllCustomers
  */
 public class CustomerDB {
 
