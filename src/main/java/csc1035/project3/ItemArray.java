@@ -14,17 +14,18 @@ public class ItemArray{
      * @return Returns the arraylist of converted items
      */
     public static ArrayList<Items> csvLoader(){
-        try{
+        try{ //Creates a try, catch block to catch any errors thrown.
+            //Creates a FileReader object to read the specified CSV file.
             FileReader fr = new FileReader("src/main/resources/stock.sample.csv");
-            Scanner s = new Scanner(fr).useDelimiter(",");
+            Scanner s = new Scanner(fr).useDelimiter(","); //Scanner reads the file, separating using commas.
             while(s.hasNext()){
-                String[] temp;
-                temp = s.nextLine().split(",");
+                String[] temp; //Creates a string array.
+                temp = s.nextLine().split(","); //Stores each entry between commas in the array.
                 items.add(new Items(temp[0], temp[1], Boolean.parseBoolean(temp[2]), Double.parseDouble(temp[3]),
-                        Integer.parseInt(temp[4]), Double.parseDouble(temp[5])));
+                        Integer.parseInt(temp[4]), Double.parseDouble(temp[5]))); //Adds each field into the item array.
             }
             s.close();
-            return items;
+            return items; //Returns the item with completed fields.
         } catch(IOException e){
             e.printStackTrace();
         }
