@@ -4,7 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Contains the command line interface for running the EPOS program.
+ */
 public class main {
+    /**
+     * Provide command line interface to communicate with the EPOS program.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
 
         System.out.println("Program started.");
