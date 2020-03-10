@@ -9,6 +9,10 @@ public class ItemArray{
 
     private static ArrayList<Items> items = new ArrayList<>();
 
+    /**
+     *
+     * @return Returns the arraylist of converted items
+     */
     public static ArrayList<Items> csvLoader(){
         try{
             FileReader fr = new FileReader("src/main/resources/stock.sample.csv");
@@ -26,6 +30,11 @@ public class ItemArray{
         return null;
     }
 
+    /**
+     *
+     * @param string The string to be converted from csv format into an item
+     * @return Returns the converted item
+     */
     public static Items stringLoader(String string) {
         String[] temp = string.split(",");
         return new Items(temp[0], temp[1], Boolean.parseBoolean(temp[2]), Double.parseDouble(temp[3]), Integer.parseInt(temp[4]), Double.parseDouble(temp[5]));

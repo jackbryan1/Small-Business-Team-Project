@@ -4,7 +4,11 @@ import java.util.HashMap;
 
 public class Transaction {
 
-
+    /**
+     *
+     * @param items A hashmap of items that are involved in the transaction as well as the quantity
+     * @return Returns the total price of the items in the transaction
+     */
     public static float transaction(HashMap<Items, Integer> items){
         float price = 0;
         for( Items item: items.keySet()){
@@ -15,6 +19,12 @@ public class Transaction {
         return price;
     }
 
+    /**
+     *
+     * @param items A hashmap of items that are involved in the transaction as well as the quantity
+     * @param price The total price of the items in the transaction
+     * @param change The change that is to be returned to the customer
+     */
     public static void receipt(HashMap<Items, Integer> items, float price, float change){
         System.out.format("+---------------------------------------------+" + System.lineSeparator());
         System.out.format("|Items Purchased:                             |" + System.lineSeparator());
@@ -23,12 +33,12 @@ public class Transaction {
         System.out.format("|          Name          |  Price  | Quantity |" + System.lineSeparator());
         System.out.format("+------------------------+---------+----------+" + System.lineSeparator());
         for( Items item: items.keySet()){
-            System.out.format("%1s%25s%1s%9s%1s%10s%1s%n","|", item.getName(),"|",item.getSellPrice(),"|",items.get(item),"|");
+            System.out.format("%1s%24s%1s%9s%1s%10s%1s%n","|", item.getName(),"|",item.getSellPrice(),"|",items.get(item),"|");
         }
         System.out.format("+------------------------+---------+----------+" + System.lineSeparator());
-        System.out.format("%15s%5s%28s%n", "|Total Price: £", price, "|");
-        System.out.format("%14s%5s%29s%n", "|Total Paid: £", (price+change), "|");
-        System.out.format("%16s%5s%27s%n", "|Total Change: £", change, "|");
+        System.out.format("%14s%9s%24s%n", "|Total Price: ","£" + price, "|");
+        System.out.format("%13s%9s%25s%n", "|Total Paid: ", "£" +(price+change), "|");
+        System.out.format("%15s%9s%23s%n", "|Total Change: ", "£" + change, "|");
         System.out.format("+---------------------------------------------+" + System.lineSeparator());
     }
 }
