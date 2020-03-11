@@ -21,6 +21,7 @@ public class TrickyTrinkets implements Business{
 
     @Override
     public void updateStock(Integer id, Integer stock, ArrayList options) {
+        //Checks if the id input is one of the search results.
         if (options.contains(id)) {
             Items i = ItemsDB.idSearch(id);
             i.setStock(stock);
@@ -33,6 +34,7 @@ public class TrickyTrinkets implements Business{
 
     @Override
     public void deleteItem(Integer id, ArrayList options) {
+        //Checks if the id input is one of the search results.
         if (options.contains(id)) {
             ItemsDB.delete(ItemsDB.idSearch(id));
             System.out.println("Item deleted.");
