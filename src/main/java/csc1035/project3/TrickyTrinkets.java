@@ -32,9 +32,13 @@ public class TrickyTrinkets implements Business{
     }
 
     @Override
-    public void deleteItem(Integer id) {
-        ItemsDB.delete(ItemsDB.idSearch(id));
-        System.out.println("Item deleted.");
+    public void deleteItem(Integer id, ArrayList options) {
+        if (options.contains(id)) {
+            ItemsDB.delete(ItemsDB.idSearch(id));
+            System.out.println("Item deleted.");
+        } else {
+            System.out.println("This ID is not an option.");
+        }
     }
 
     @Override

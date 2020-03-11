@@ -9,7 +9,7 @@ public interface Business {
 
     void updateStock(Integer id, Integer stock, ArrayList options);
 
-    void deleteItem(Integer id);
+    void deleteItem(Integer id, ArrayList options);
 
     void customerDB();
 }
