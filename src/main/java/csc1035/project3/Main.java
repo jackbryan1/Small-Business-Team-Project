@@ -117,7 +117,6 @@ public class Main {
                             //Catches exception if user did not enter an integer for id searching.
                             try {
                                 int id = Integer.parseInt(s);
-                                //Checks if the id input is one of the search results.
                                 TT.updateStock(id, newStock, idOptions);
                             } catch (Exception e) {
                                 System.out.println("ID must be an integer.");
@@ -139,7 +138,6 @@ public class Main {
                         //Catches exception if user did not enter an integer for id searching.
                         try {
                             int id = Integer.parseInt(s);
-                            //Checks if the id input is one of the search results.
                             if (idOptions.contains(id)) {
                                 TT.deleteItem(id);
                             } else {
