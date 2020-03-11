@@ -126,17 +126,4 @@ public class ItemsDB {
             session.close();
         }
     }
-
-    // To remove once methods integrated with rest of the code.
-    public static void main(String[] args) {
-        //Items item = new Items("test", "test", true, 13.00, 14, 14.00);
-        ArrayList<Items> test = ItemArray.csvLoader();
-        //test.add(item);
-        create(test);
-        //Items test = idSearch(10);
-        //test.setName("Large Animal Sculpture");
-        //update(test);
-        //readSearch("");
-        //delete(test);
-    }
 }
