@@ -3,6 +3,10 @@ package csc1035.project3;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Tests for CRUD operations in CustomerDB class
+ * @author b9038224
+ */
 public class CustomersDBTest {
 
     public static void main(String[] args) {
@@ -45,7 +49,6 @@ public class CustomersDBTest {
         CustomerDB.deleteCustomerUsingCID((Integer) CustomerDB.getCIDByPhoneExt("33322").get(0));
         CustomerDB.deleteCustomer(c2);
         CustomerDB.deleteAllCustomers();
-
 
     }
 }
