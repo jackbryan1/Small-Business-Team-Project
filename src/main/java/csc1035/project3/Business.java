@@ -1,29 +1,15 @@
 package csc1035.project3;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface Business {
+    void addItem(ArrayList<Items> Items);
 
-    int checkStock(Items item);
-    /**
-     * Check the available stock of an item.
-     *
-     * @param : Item the item to check stock.
-     * @return : Returns the stock available.
-     */
+    int checkStock(Integer id, ArrayList options);
 
-    String printReceipt(Items item, Customers customer);
-    /**
-     * Prints a receipt depending on the items bought.
-     *
-     * @param : Item is the items that have been bought for specified customer.
-     * @return : Returns the receipt that has been created.
-     */
+    void updateStock(Integer id, Integer stock, ArrayList options);
 
-    void updateStock(Items item);
-    /**
-     * Updates the amount of stock for an item depending on purchases.
-     *
-     * @param : Item is the item that needs its stock updating.
-     */
+    void deleteItem(Integer id);
+
+    void customerDB();
 }

@@ -15,6 +15,7 @@ public class Main {
      * @param args command-line arguments
      */
     public static void main(String[] args) {
+        TrickyTrinkets TT = new TrickyTrinkets();
 
         System.out.println("Program started.");
         Scanner scanner = new Scanner(System.in);
@@ -72,8 +73,7 @@ public class Main {
                                     break;
                                 }
                             case ("1"):
-                                ItemsDB.create(itemArray);
-                                System.out.println("Items added to database.");
+                                TT.addItem(itemArray);
                                 running = false;
                                 break;
                             case ("2"):
@@ -95,12 +95,7 @@ public class Main {
                         try {
                             int id = Integer.parseInt(s);
                             //Checks if the id input is one of the search results.
-                            if (idOptions.contains(id)) {
-                                System.out.printf("Stock: %s", ItemsDB.idSearch(id).getStock());
-                                System.out.println();
-                            } else {
-                                System.out.println("This ID is not an option.");
-                            }
+                            System.out.println("Stock is: "+TT.checkStock(id, idOptions));
                         } catch (Exception e) {
                             System.out.println("ID must be an integer.");
                         }
@@ -123,14 +118,7 @@ public class Main {
                             try {
                                 int id = Integer.parseInt(s);
                                 //Checks if the id input is one of the search results.
-                                if (idOptions.contains(id)) {
-                                    Items i = ItemsDB.idSearch(id);
-                                    i.setStock(newStock);
-                                    ItemsDB.update(i);
-                                    System.out.println("Stock updated.");
-                                } else {
-                                    System.out.println("This ID is not an option.");
-                                }
+                                TT.updateStock(id, newStock, idOptions);
                             } catch (Exception e) {
                                 System.out.println("ID must be an integer.");
                             }
@@ -153,8 +141,7 @@ public class Main {
                             int id = Integer.parseInt(s);
                             //Checks if the id input is one of the search results.
                             if (idOptions.contains(id)) {
-                                ItemsDB.delete(ItemsDB.idSearch(id));
-                                System.out.println("Item deleted.");
+                                TT.deleteItem(id);
                             } else {
                                 System.out.println("This ID is not an option.");
                             }
@@ -256,7 +243,7 @@ public class Main {
                     break;
 
                 case ("5"):
-                    CustomerCLI custCLI = new CustomerCLI();
+                    TT.customerDB();
                     break;
 
                 case ("6")://Exit
