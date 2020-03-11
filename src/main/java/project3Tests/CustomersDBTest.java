@@ -43,7 +43,7 @@ public class CustomersDBTest {
 
         // --- Test Update ---
         // Integer typecasting is necessary as statement getCIDby(Property).get(x) returns vague Object, and update methods require int cid.
-        CustomerDB.updateEmail((Integer) CustomerDB.getCIDBySurname("Doe").get(0), "jd@gmail.comy");
+        CustomerDB.updateEmail((Integer) CustomerDB.getCIDBySurname("Doe").get(0), "jd@gmail.com");
         CustomerDB.updatePhoneExt((Integer) CustomerDB.getCIDByPhoneExt("01201").get(0), "45823");
         Customers c5 = new Customers("ReplaceC4", "empty", "33322");
         CustomerDB.replaceCustomer((Integer) CustomerDB.getCIDByPhoneExt("789").get(0), c5);
