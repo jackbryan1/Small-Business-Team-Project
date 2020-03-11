@@ -91,7 +91,7 @@ public class Main {
                     if (!idOptions.isEmpty()) {
                         System.out.println("Choose an ID:");
                         s = scanner.nextLine();
-                        //Catches exception if user did not enter a integer for id searching.
+                        //Catches exception if user did not enter an integer for id searching.
                         try {
                             int id = Integer.parseInt(s);
                             //Checks if the id input is one of the search results.
@@ -119,7 +119,7 @@ public class Main {
                         if (!idOptions.isEmpty()) {
                             System.out.println("Choose an ID:");
                             s = scanner.nextLine();
-                            //Catches exception if user did not enter a integer for id searching.
+                            //Catches exception if user did not enter an integer for id searching.
                             try {
                                 int id = Integer.parseInt(s);
                                 //Checks if the id input is one of the search results.
@@ -148,7 +148,7 @@ public class Main {
                     if (!idOptions.isEmpty()) {
                         System.out.println("Choose an ID:");
                         s = scanner.nextLine();
-                        //Catches exception if user did not enter a integer for id searching.
+                        //Catches exception if user did not enter an integer for id searching.
                         try {
                             int id = Integer.parseInt(s);
                             //Checks if the id input is one of the search results.
@@ -185,14 +185,14 @@ public class Main {
                                 if (!idOptions.isEmpty()) {
                                     System.out.println("Choose an ID:");
                                     s = scanner.nextLine();
-                                    //Catches exception if user did not enter a integer for id searching.
+                                    //Catches exception if user did not enter an integer for id searching.
                                     try {
                                         int id = Integer.parseInt(s);
                                         //Checks if the id input is one of the search results.
                                         if (idOptions.contains(id)) {
                                             System.out.println("Quantity:");
                                             s = scanner.nextLine();
-                                            //Catches exception if user did not enter a integer for the quantity.
+                                            //Catches exception if user did not enter an integer for the quantity.
                                             try {
                                                 int quantity = Integer.parseInt(s);
                                                 if (quantity > 0) {
