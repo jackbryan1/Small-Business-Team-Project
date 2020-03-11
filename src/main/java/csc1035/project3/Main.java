@@ -140,11 +140,7 @@ public class Main {
                         try {
                             int id = Integer.parseInt(s);
                             //Checks if the id input is one of the search results.
-                            if (idOptions.contains(id)) {
-                                TT.deleteItem(id);
-                            } else {
-                                System.out.println("This ID is not an option.");
-                            }
+                            TT.deleteItem(id, idOptions);
                         } catch (Exception e) {
                             System.out.println("ID must be an integer.");
                         }
