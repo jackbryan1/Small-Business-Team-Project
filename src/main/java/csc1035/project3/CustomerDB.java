@@ -352,7 +352,7 @@ public class CustomerDB {
 
         // Ensure User wants to delete all Customers
         Scanner input = new Scanner(System.in);
-        System.out.println("This operation will delete all customers and recovery isn't possible - are you sure you want to continue? y/n");
+        System.out.println("This operation will delete all customers and recovery isn't possible - are you sure you want to do this? y/n");
         String choice = input.next();
 
         if (choice.toLowerCase().equals("y")){
