@@ -12,9 +12,16 @@ public class Transaction {
     public static float transaction(HashMap<Items, Integer> items){
         float price = 0; //Variable for price of the transaction.
         for( Items item: items.keySet()){ //Iterates through items in the database.
-            price += items.get(item) * item.getSellPrice(); //sets price to price of an item multiplied by how many are purchased.
-            item.setStock(item.getStock() - items.get(item)); //Deducts amount purchased from stock number.
-            ItemsDB.update(item); //Updates the item in the database.
+            if (items.get(item) <= item.getStock()){
+                price += items.get(item) * item.getSellPrice(); //sets price to price of an item multiplied by how many are purchased.
+                item.setStock(item.getStock() - items.get(item)); //Deducts amount purchased from stock number.
+                ItemsDB.update(item); //Updates the item in the database.
+            } else if(item.getStock() < items.get(item)){
+                price += item.getSellPrice() * item.getStock();
+                ItemsDB.update(item);
+            } else {
+                System.out.println("Item out of stock!!");
+            }
         }
         return price; //Returns price of the transaction.
     }
